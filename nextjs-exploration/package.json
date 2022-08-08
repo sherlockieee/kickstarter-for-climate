@@ -1,0 +1,32 @@
+{
+  "name": "nextjs-exploration",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "image-trace-loader": "^1.0.2",
+    "imagemin-optipng": "^8.0.0",
+    "imagemin-svgo": "^10.0.1",
+    "jimp": "^0.16.1",
+    "lqip-loader": "^2.2.1",
+    "next": "12.2.4",
+    "next-compose-plugins": "^2.2.1",
+    "next-images": "^1.8.4",
+    "next-optimized-images": "^2.6.2",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "responsive-loader": "^3.0.4",
+    "sharp": "^0.30.7",
+    "svg-sprite-loader": "^6.0.11",
+    "webp-loader": "^0.6.0"
+  },
+  "devDependencies": {
+    "eslint": "8.21.0",
+    "eslint-config-next": "12.2.4"
+  }
+}
