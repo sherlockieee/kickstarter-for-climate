@@ -33,9 +33,7 @@ export default function Home(initialData) {
         <title>Search GIF</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div>
-        <Image src="/logo.png" alt="logo" layout="fill" />
-      </div>
+
       <h1 className={styles.title}>Hello, World</h1>
 
       <form onSubmit={search}>
