@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { fetchBackend } from "../lib/fetch-backend";
 import { fetchGifs } from "../lib/fetch-gifs";
 import styles from "../styles/Home.module.css";
 
@@ -8,9 +9,11 @@ export default function Home(initialData) {
   const [formInput, setFormInput] = useState({});
   const [searchResults, setSearchResults] = useState([]);
   const [searchTerm, setSearchTerm] = useState("cats");
+  const [title, setTitle] = useState("");
 
   useEffect(() => {
     setSearchResults(initialData.catGifs.data);
+    setTitle(initialData.backendMessage.message);
   }, [initialData]);
 
   const handleInputs = (e) => {
@@ -31,7 +34,7 @@ export default function Home(initialData) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <h1 className={styles.title}>Hello, World</h1>
+      <h1 className={styles.title}>{title}</h1>
 
       <form onSubmit={search}>
         <input onChange={handleInputs} name="searchTerm" type="text" required />
@@ -55,5 +58,6 @@ export default function Home(initialData) {
 
 export async function getStaticProps() {
   const catGifs = await fetchGifs("cats");
-  return { props: { catGifs } };
+  const backendMessage = await fetchBackend();
+  return { props: { catGifs, backendMessage } };
 }
