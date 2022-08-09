@@ -1,5 +1,4 @@
 import Head from "next/head";
-import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { fetchGifs } from "../../lib/fetch-gifs";
@@ -26,7 +25,7 @@ export default function Search(initialData) {
         return (
           <div key={index}>
             <h3>{each.title}</h3>
-            <Image src={each.images.original.url} alt={each.title} />
+            <img src={each.images.original.url} alt={each.title} />
           </div>
         );
       })}

@@ -1,5 +1,4 @@
 import Head from "next/head";
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { fetchGifs } from "../lib/fetch-gifs";
@@ -46,7 +45,7 @@ export default function Home(initialData) {
         return (
           <div key={idx}>
             <h3>{val.title}</h3>
-            <Image src={val.images.original.url} alt={val.title} />
+            <img src={val.images.original.url} alt={val.title} />
           </div>
         );
       })}
