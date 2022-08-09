@@ -2,6 +2,7 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { fetchGifs } from "../lib/fetch-gifs";
 import styles from "../styles/Home.module.css";
 
 export default function Home(initialData) {
@@ -19,10 +20,7 @@ export default function Home(initialData) {
   };
   const search = async (e) => {
     e.preventDefault();
-    let gifs = await fetch(
-      `https://api.giphy.com/v1/gifs/search?q=${formInput.searchTerm}&api_key=nPJNlVceWHERWCSDBW5XMo1p90l7l9ie&limit=6`
-    );
-    gifs = await gifs.json();
+    let gifs = await fetchGifs(formInput.searchTerm);
     setSearchResults(gifs.data);
     setSearchTerm(formInput.searchTerm);
   };
@@ -48,7 +46,7 @@ export default function Home(initialData) {
         return (
           <div key={idx}>
             <h3>{val.title}</h3>
-            <img src={val.images.original.url} alt={val.title} />
+            <Image src={val.images.original.url} alt={val.title} />
           </div>
         );
       })}
@@ -57,9 +55,6 @@ export default function Home(initialData) {
 }
 
 export async function getStaticProps() {
-  let catGifs = await fetch(
-    "https://api.giphy.com/v1/gifs/search?q=cats&api_key=m2tO2HPSFB3gZqUQiNxQ0dHgUtbGpkfh&limit=10"
-  );
-  catGifs = await catGifs.json();
-  return { props: { catGifs: catGifs } };
+  const catGifs = await fetchGifs("cats");
+  return { props: { catGifs } };
 }

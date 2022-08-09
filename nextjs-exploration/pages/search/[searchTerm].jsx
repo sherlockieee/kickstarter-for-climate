@@ -1,6 +1,8 @@
 import Head from "next/head";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { fetchGifs } from "../../lib/fetch-gifs";
 
 export default function Search(initialData) {
   const router = useRouter();
@@ -24,7 +26,7 @@ export default function Search(initialData) {
         return (
           <div key={index}>
             <h3>{each.title}</h3>
-            <img src={each.images.original.url} alt={each.title} />
+            <Image src={each.images.original.url} alt={each.title} />
           </div>
         );
       })}
@@ -34,9 +36,6 @@ export default function Search(initialData) {
 
 export async function getServerSideProps(context) {
   const searchTerm = context.query.searchTerm;
-  let gifs = await fetch(
-    `https://api.giphy.com/v1/gifs/search?q=${searchTerm}&api_key=nPJNlVceWHERWCSDBW5XMo1p90l7l9ie&limit=6`
-  );
-  gifs = await gifs.json();
+  const gifs = await fetchGifs(searchTerm);
   return { props: { gifs: gifs.data } };
 }
