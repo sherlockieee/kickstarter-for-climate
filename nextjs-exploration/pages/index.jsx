@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { fetchBackend } from "../lib/fetch-backend";
+import { fetchBackend, getSearches, postSearch } from "../lib/fetch-backend";
 import { fetchGifs } from "../lib/fetch-gifs";
 import styles from "../styles/Home.module.css";
 
@@ -10,10 +10,12 @@ export default function Home(initialData) {
   const [searchResults, setSearchResults] = useState([]);
   const [searchTerm, setSearchTerm] = useState("cats");
   const [title, setTitle] = useState("");
+  const [prevSearches, setPrevSearches] = useState([]);
 
   useEffect(() => {
     setSearchResults(initialData.catGifs.data);
     setTitle(initialData.backendMessage.message);
+    setPrevSearches(initialData.prevSearches);
   }, [initialData]);
 
   const handleInputs = (e) => {
@@ -25,6 +27,9 @@ export default function Home(initialData) {
     let gifs = await fetchGifs(formInput.searchTerm);
     setSearchResults(gifs.data);
     setSearchTerm(formInput.searchTerm);
+
+    const newSearch = await postSearch({ text: formInput.searchTerm });
+    setPrevSearches([...prevSearches, newSearch]);
   };
 
   return (
@@ -40,6 +45,10 @@ export default function Home(initialData) {
         <input onChange={handleInputs} name="searchTerm" type="text" required />
         <button type="submit">Search</button>
       </form>
+      <h2>Previous searches:</h2>
+      {prevSearches.map((val, idx) => {
+        return <li key={idx}>{val.text}</li>;
+      })}
       <Link href="/search/[pid]" as={`/search/${searchTerm}`}>
         <a>Share this page</a>
       </Link>
@@ -59,5 +68,6 @@ export default function Home(initialData) {
 export async function getStaticProps() {
   const catGifs = await fetchGifs("cats");
   const backendMessage = await fetchBackend();
-  return { props: { catGifs, backendMessage } };
+  const prevSearches = await getSearches();
+  return { props: { catGifs, backendMessage, prevSearches } };
 }
