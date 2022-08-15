@@ -13,7 +13,11 @@ export default function Home(initialData) {
   const [prevSearches, setPrevSearches] = useState([]);
 
   useEffect(() => {
-    const prevSearches = await getSearches();
+    const fetchSearches = async () => {
+      const prevSearches = await getSearches();
+      setPrevSearches(prevSearches);
+    };
+    fetchSearches().catch((err) => console.error(err));
     setSearchResults(initialData.catGifs.data);
     setTitle(initialData.backendMessage.message);
     setPrevSearches(prevSearches);
@@ -69,6 +73,6 @@ export default function Home(initialData) {
 export async function getStaticProps() {
   const catGifs = await fetchGifs("cats");
   const backendMessage = await fetchBackend();
-  
+
   return { props: { catGifs, backendMessage } };
 }
