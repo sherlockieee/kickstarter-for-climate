@@ -1,2 +1,13 @@
 .vscode/
 node_modules
+.env
+.env.*local
+
+# Optional REPL history
+.node_repl_history
+.next
+
+# Logs
+logs
+*.log
+npm-debug.log*
