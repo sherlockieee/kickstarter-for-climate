@@ -17,13 +17,13 @@
     "resolveJsonModule": true,
     "moduleResolution": "node",
     "isolatedModules": true,
+    "jsxImportSource": "@emotion/react",
     "jsx": "preserve"
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
-, "pages/about.jsx", "pages/index.jsx"  ],
+    "**/*.tsx" ],
   "exclude": [
     "node_modules"
   ]
