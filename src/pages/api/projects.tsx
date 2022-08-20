@@ -21,10 +21,10 @@ const mockData: ProjectsList = [
   {
     id: "2",
     title: "Direct Air Capture  Project",
-    funding_needed: 30000,
+    funding_needed: 17000,
     currency: "USD",
-    total_raised: 15000,
-    total_backers: 380,
+    total_raised: 12800.37,
+    total_backers: 12,
     description:
       "Direct air capture draws carbon dioxide directly from the air and creates rocks that can then be used in other industrial applications. We believe each of these carbon credits will be worth a lot because they are pure carbon draw down produced at industrial level scale. The money would go into producing more machinery as well as R & D.",
     tags: [
