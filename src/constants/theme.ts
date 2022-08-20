@@ -4,12 +4,12 @@ import { createTheme } from "@material-ui/core/styles";
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#A1E855",
-      contrastText: "#000000",
+      main: "#01890C",
+      contrastText: "#fff",
     },
     secondary: {
-      main: "#5BC8EC",
-      contrastText: "#000000",
+      main: "#41428",
+      contrastText: "#fff",
     },
     error: {
       main: "#C95234",
@@ -18,7 +18,7 @@ const theme = createTheme({
     background: {
       default: "white",
     },
-  },
+  }
 });
 
 
