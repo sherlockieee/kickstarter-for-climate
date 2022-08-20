@@ -1,11 +1,15 @@
-import { styled } from "@mui/material/styles";
-import { LinearProgress } from "@material-ui/core";
-import { linearProgressClasses } from "@mui/material";
+import { Box, LinearProgress, LinearProgressProps } from "@material-ui/core";
 
-export const ProgressBar = styled(LinearProgress)(({ theme }) => ({
-  height: 10,
-  borderRadius: 5,
-  [`& .${linearProgressClasses.bar}`]: {
-    borderRadius: 5,
-  },
-}));
+export const ProgressBar = (props: LinearProgressProps) => {
+  return (
+    <Box>
+      <LinearProgress
+        style={{
+          height: 10,
+          borderRadius: 5,
+        }}
+        {...props}
+      />
+    </Box>
+  );
+};
