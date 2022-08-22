@@ -11,7 +11,7 @@ export default function Home({ projects }: { projects: ProjectsList }) {
         <Typography variant="h3" align="center" gutterBottom>
           Fund a project
         </Typography>
-        <Typography variant="body1" align="center">
+        <Typography variant="body1" align="center" gutterBottom>
           All these projects are vetted by professionals and are guaranteed to
           bring a minimum amount of carbon credits.
         </Typography>

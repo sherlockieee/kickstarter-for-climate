@@ -6,17 +6,17 @@ export default function Home() {
   return (
     <>
       <Container maxWidth="lg">
-        <Typography variant="h1" align="center">
+        <Typography variant="h1" align="center" gutterBottom>
           Crowdfunding for climate projects
         </Typography>
-        <Typography variant="body1" align="center">
+        <Typography variant="body1" align="center" gutterBottom>
           Pre-order carbon credits from your favorite projects, allow for
           funding 10x faster, all the while making our planet a better place!{" "}
         </Typography>
-        <div style={{ display: "flex", gap: "10px" }}>
+        <div style={{ display: "flex", gap: "10px", justifyContent: "center" }}>
           <Button
             variant="outlined"
-            color="primary"
+            color="secondary"
             component={NextLinkComposed}
             to={{ pathname: "/apply" }}
           >
@@ -24,7 +24,7 @@ export default function Home() {
           </Button>
           <Button
             variant="contained"
-            color="primary"
+            color="secondary"
             component={NextLinkComposed}
             to={{ pathname: "/projects" }}
           >

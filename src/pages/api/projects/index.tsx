@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import type { ProjectsList } from "../../types/projects";
+import type { ProjectsList } from "../../../types/projects";
 
-const mockData: ProjectsList = [
+export const mockData: ProjectsList = [
   {
     id: "1",
     title: "Biochar Project",
