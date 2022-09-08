@@ -7,11 +7,12 @@ export default function Home() {
     <>
       <Container maxWidth="lg">
         <Typography variant="h1" align="center" gutterBottom>
-          Crowdfunding for climate projects
+          Crowdfund climate projects
         </Typography>
         <Typography variant="body1" align="center" gutterBottom>
-          Pre-order carbon credits from your favorite projects, allow for
-          funding 10x faster, all the while making our planet a better place!{" "}
+          The climate is on fire and you can help! Crowdfund carbon removal
+          projects and get future carbon credits to support projects from around
+          the world.
         </Typography>
         <div style={{ display: "flex", gap: "10px", justifyContent: "center" }}>
           <Button
