@@ -38,13 +38,16 @@ const theme = createTheme({
     h1: {
       fontFamily: "'Marcellus', serif",
       color: core.gold,
+      fontSize: "4.5rem",
     },
     h2: {
       fontFamily: "'Marcellus', serif",
       color: core.gold,
+      fontSize: "3rem",
     }, h3: {
       fontFamily: "'Marcellus', serif", 
       color: core.gold,
+      fontSize: "2.5rem",
     }, h4: {
       fontFamily: "'Marcellus', serif",
       color: core.gold,
