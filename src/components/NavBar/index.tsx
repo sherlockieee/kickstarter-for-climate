@@ -1,6 +1,6 @@
-import { AppBar, Box, Toolbar, Typography } from "@material-ui/core";
+import { AppBar, Box, Button, Toolbar, Typography } from "@material-ui/core";
 import theme from "../../constants/theme";
-import Button from "../Button";
+import { NextLinkComposed } from "../Link";
 
 export const NavBar = () => {
   return (
@@ -12,14 +12,27 @@ export const NavBar = () => {
         style={{ boxShadow: "none", padding: "1rem" }}
       >
         <Toolbar>
-          <Typography variant="h5" style={{ flexGrow: 1, boxShadow: "none" }}>
+          <Typography
+            variant="h5"
+            style={{ flexGrow: 1, color: theme.palette.secondary.main }}
+          >
             X | Kickstarter for Climate
           </Typography>
-          <Box style={{ display: "flex", gap: `0.5rem` }}>
-            <Button variant="outlined" color="primary">
+          <Box style={{ display: "flex", gap: `1rem` }}>
+            <Button
+              variant="outlined"
+              color="primary"
+              component={NextLinkComposed}
+              to={{ pathname: "/apply" }}
+            >
               Apply for funding{" "}
             </Button>
-            <Button variant="contained" color="primary">
+            <Button
+              variant="contained"
+              color="primary"
+              component={NextLinkComposed}
+              to={{ pathname: "/projects" }}
+            >
               Browse projects
             </Button>
           </Box>

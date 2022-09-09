@@ -1,4 +1,5 @@
 import { createTheme } from "@material-ui/core/styles";
+import type {} from '@material-ui/lab/themeAugmentation'
 
 const core = {
   darkGreen: '#0B3830',
@@ -30,6 +31,7 @@ const theme = createTheme({
   },
   typography: {
     fontFamily: "'DM Sans', sans-serif",
+    fontSize: 16,
     allVariants: {
       color: core.lightPink,
     },
@@ -41,17 +43,31 @@ const theme = createTheme({
       fontFamily: "'Marcellus', serif",
       color: core.gold,
     }, h3: {
-      fontFamily: "'Marcellus', serif",color: core.gold,
+      fontFamily: "'Marcellus', serif", 
+      color: core.gold,
     }, h4: {
-      fontFamily: "'Marcellus', serif",color: core.gold,
+      fontFamily: "'Marcellus', serif",
+      color: core.gold,
     }, h5: {
-      fontFamily: "'Marcellus', serif",color: core.gold,
+      fontFamily: "'Marcellus', serif",
+      color: core.gold,
     }, h6: {
-      fontFamily: "'Marcellus', serif",color: core.gold,
+      fontFamily: "'Marcellus', serif",
+      color: core.gold,
     }
-    
-  }
+  },
+
 });
+
+theme.overrides = {
+  MuiButton: {
+    root: {
+      padding: "0.75rem 1rem",
+      fontFamily:  "'DM Sans', sans-serif",
+      textTransform: 'none', 
+    }
+  }
+}
 
 
 export default theme;

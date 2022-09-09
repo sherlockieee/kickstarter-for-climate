@@ -1,4 +1,4 @@
-import { Button, Typography } from "@material-ui/core";
+import { Box, Button, Typography } from "@material-ui/core";
 import { Container } from "@mui/material";
 import { NextLinkComposed } from "../components/Link";
 import { NavBar } from "../components/NavBar";
@@ -16,24 +16,24 @@ export default function Home() {
           projects and get future carbon credits to support projects from around
           the world.
         </Typography>
-        <div style={{ display: "flex", gap: "10px", justifyContent: "center" }}>
+        <Box style={{ display: "flex", gap: `1rem` }}>
           <Button
             variant="outlined"
-            color="secondary"
+            color="primary"
             component={NextLinkComposed}
             to={{ pathname: "/apply" }}
           >
-            Apply for funding
+            Apply for funding{" "}
           </Button>
           <Button
             variant="contained"
-            color="secondary"
+            color="primary"
             component={NextLinkComposed}
             to={{ pathname: "/projects" }}
           >
             Browse projects
           </Button>
-        </div>
+        </Box>
       </Container>
     </>
   );
