@@ -1,7 +1,7 @@
-import { Box, Button, Grid, makeStyles, Typography } from "@material-ui/core";
-import { NextLinkComposed } from "../../components/Link";
+import { Box, Grid, makeStyles, Typography } from "@material-ui/core";
 
 import { Theme } from "@material-ui/core";
+import { ApplyButton, ProjectButton } from "./buttons";
 
 const useImageStyle = makeStyles<Theme>((theme) => ({
   introImage: {
@@ -51,22 +51,8 @@ export const IntroSection = () => {
           the world.
         </Typography>
         <Box style={{ display: "flex", gap: `1rem`, marginTop: "1rem" }}>
-          <Button
-            variant="outlined"
-            color="primary"
-            component={NextLinkComposed}
-            to={{ pathname: "/apply" }}
-          >
-            Apply for funding{" "}
-          </Button>
-          <Button
-            variant="contained"
-            color="primary"
-            component={NextLinkComposed}
-            to={{ pathname: "/projects" }}
-          >
-            Browse projects
-          </Button>
+          <ApplyButton variant="outlined" />
+          <ProjectButton />
         </Box>
       </Grid>
       <Grid item xs={12} md={7} style={{ width: "100%", position: "relative" }}>

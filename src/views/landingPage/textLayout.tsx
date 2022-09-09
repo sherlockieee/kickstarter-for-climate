@@ -1,4 +1,4 @@
-import { Grid, Typography } from "@material-ui/core";
+import { Container, Grid, Typography } from "@material-ui/core";
 import Image from "next/image";
 
 type TextLayoutProps = {
@@ -17,54 +17,56 @@ export const TextLayout = ({
   reverse = false,
 }: TextLayoutProps) => {
   return (
-    <Grid
-      container
-      spacing={4}
-      style={{ marginTop: "2rem" }}
-      direction={reverse ? "row-reverse" : "row"}
-      alignItems="center"
-    >
+    <Container maxWidth="lg">
       <Grid
-        item
-        xs={12}
-        md={6}
-        style={{
-          padding: "1rem 4rem",
-          alignSelf: "center",
-          boxSizing: "border-box",
-        }}
+        container
+        spacing={4}
+        style={{ marginTop: "2rem" }}
+        direction={reverse ? "row-reverse" : "row"}
+        alignItems="center"
       >
-        <Image
-          width="100%"
-          height="100%"
-          layout="responsive"
-          objectFit="contain"
-          src={imgSource}
-          alt=""
-        />
-      </Grid>
-      <Grid
-        item
-        xs={12}
-        md={6}
-        style={{ padding: "1rem 4rem", boxSizing: "border-box" }}
-      >
-        <div
+        <Grid
+          item
+          xs={12}
+          md={6}
           style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "2rem",
-            alignItems: "flex-start",
-            justifyContent: "center",
+            padding: "1rem 2rem",
+            alignSelf: "center",
+            boxSizing: "border-box",
           }}
         >
-          <Typography variant="h3">{title}</Typography>
-          <Typography variant="body1" gutterBottom>
-            {text}
-          </Typography>
-          {callToAction}
-        </div>
+          <Image
+            width="100%"
+            height="100%"
+            layout="responsive"
+            objectFit="contain"
+            src={imgSource}
+            alt=""
+          />
+        </Grid>
+        <Grid
+          item
+          xs={12}
+          md={6}
+          style={{ padding: "1rem 2rem", boxSizing: "border-box" }}
+        >
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "2rem",
+              alignItems: "flex-start",
+              justifyContent: "center",
+            }}
+          >
+            <Typography variant="h3">{title}</Typography>
+            <Typography variant="body1" gutterBottom>
+              {text}
+            </Typography>
+            {callToAction}
+          </div>
+        </Grid>
       </Grid>
-    </Grid>
+    </Container>
   );
 };

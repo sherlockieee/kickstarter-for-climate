@@ -69,6 +69,14 @@ theme.overrides = {
       fontFamily:  "'DM Sans', sans-serif",
       textTransform: 'none', 
     }
+  },
+  MuiLink: {
+    root: {
+      textDecoration: 'none',
+      "&:hover": {
+        color: core.gold,
+      }
+    }
   }
 }
 
