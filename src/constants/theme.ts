@@ -10,6 +10,7 @@ const core = {
 
 // Create a theme instance.
 const theme = createTheme({
+  spacing: 8,
   palette: {
     background: {
       default: core.darkGreen,

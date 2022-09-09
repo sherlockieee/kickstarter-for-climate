@@ -1,10 +1,12 @@
 import { Button, Typography } from "@material-ui/core";
 import { Container } from "@mui/material";
 import { NextLinkComposed } from "../components/Link";
+import { NavBar } from "../components/NavBar";
 
 export default function Home() {
   return (
     <>
+      <NavBar />
       <Container maxWidth="lg">
         <Typography variant="h1" align="center" gutterBottom>
           Crowdfund climate projects
