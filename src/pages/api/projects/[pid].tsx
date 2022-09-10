@@ -7,6 +7,6 @@ export default function handler(
   res: NextApiResponse<Project>
 ) {
   const { pid } = req.query;
-  const post = mockData.filter((val) => val.id === pid)[0];
+  const post = mockData.filter((val) => val.id.toString() === pid)[0];
   res.status(200).json(post);
 }

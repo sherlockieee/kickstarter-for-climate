@@ -2,7 +2,6 @@ import {
   Box,
   Button,
   Card,
-  CardActionArea,
   CardActions,
   CardContent,
   CardMedia,
@@ -12,6 +11,7 @@ import {
 import { Stack } from "@mui/system";
 import { Project } from "../../types/projects";
 import { formatCurrency } from "../../utils/formatCurrency";
+import { NextLinkComposed } from "../Link";
 import { ProgressBar } from "../ProgressBar";
 
 export const ProjectCard = ({ proj }: { proj: Project }) => {
@@ -81,7 +81,13 @@ export const ProjectCard = ({ proj }: { proj: Project }) => {
             </Stack>
           </CardContent>
           <CardActions>
-            <Button size="medium" variant="text" color="secondary">
+            <Button
+              size="medium"
+              variant="text"
+              color="secondary"
+              component={NextLinkComposed}
+              to={{ pathname: `/projects/${proj.id}` }}
+            >
               Learn more
             </Button>
             <Button size="medium" variant="contained" color="secondary">
