@@ -58,6 +58,7 @@ export const IntroSection = () => {
       <Grid item xs={12} md={7} style={{ width: "100%", position: "relative" }}>
         <img
           className={classes.introImage}
+          alt=""
           src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
         />
       </Grid>
