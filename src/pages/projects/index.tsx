@@ -11,7 +11,7 @@ export default function Home({ projects }: { projects: ProjectsList }) {
 			<NavBar />
 			<Container maxWidth="md" style={{ marginTop: "3rem" }}>
 				<section>
-					<Typography variant="h2" align="center" gutterBottom>
+					<Typography variant="h1" align="center" gutterBottom>
 						Fund a project
 					</Typography>
 					<Typography variant="body1" align="center" gutterBottom>
