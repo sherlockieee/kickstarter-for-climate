@@ -1,4 +1,6 @@
-# Capstone exploration
+# X | Kickstarter for Climate
+
+![](https://github.com/ekpangmichael/github-ci/workflows/CI/badge.svg)
 
 Central question: How can we encourage re-generative finance and drive progress in the carbon credit market?
 
