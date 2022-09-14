@@ -11,6 +11,7 @@ jobs:
   test:
     name: Test application with Cypress
     runs-on: ubuntu-latest
+    timeout-minutes: 60
     steps:
       - name: "☁️ checkout repository"
         uses: actions/checkout@v2
@@ -31,10 +32,12 @@ jobs:
 
       - name: "🔍 run tests"
         run: npm run test:ci 
+    
 
   lint:
     name: Code standards
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - name: "☁️ checkout repository"
         uses: actions/checkout@v2
