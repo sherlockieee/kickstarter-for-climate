@@ -3,7 +3,8 @@ name: Development
 on:
   push:
     branches:
-      - [dev, main]
+      - dev
+      - main
   workflow_call:
 
 jobs:
