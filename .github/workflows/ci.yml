@@ -1,0 +1,57 @@
+name: Development
+
+on:
+  push:
+    branches:
+      - dev
+      - main
+  workflow_call:
+
+jobs:
+  test:
+    name: Test application with Cypress
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: "☁️ checkout repository"
+        uses: actions/checkout@v2
+
+      - name: "🔧 setup node"
+        uses: actions/setup-node@v2.1.5
+        with:
+          node-version: 16
+
+      - name: "🔧 install npm@latest"
+        run: npm i -g npm@latest
+
+      - name: "📦 install dependencies"
+        uses: bahmutov/npm-install@v1
+
+      - name: "Build server"
+        run: npm run build
+
+      - name: "🔍 run tests"
+        run: npm run test:ci 
+    
+
+  lint:
+    name: Code standards
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: "☁️ checkout repository"
+        uses: actions/checkout@v2
+
+      - name: "🔧 setup node"
+        uses: actions/setup-node@v2.1.5
+        with:
+          node-version: 16
+
+      - name: "🔧 install npm@latest"
+        run: npm i -g npm@latest
+
+      - name: "📦 install dependencies"
+        uses: bahmutov/npm-install@v1
+
+      - name: "🔍 lint code"
+        run: npm run lint --if-present
