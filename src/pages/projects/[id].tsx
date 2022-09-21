@@ -1,14 +1,16 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import { ParsedUrlQuery } from "querystring";
+
+import { Layout } from "../../components/Layout";
+import { ProjectContent } from "../../components/ProjectContent";
 import { getOneProject, getProjects } from "../../services/projects";
 import { Project } from "../../types/projects";
 
-export default function Post(props: { project: Project }) {
+export default function Post({ project }: { project: Project }) {
 	return (
-		<div>
-			<div>{props.project.uuid}</div>
-			<div>{props.project.title}</div>
-		</div>
+		<Layout>
+			<ProjectContent proj={project} />
+		</Layout>
 	);
 }
 
