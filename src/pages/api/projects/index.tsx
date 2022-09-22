@@ -5,8 +5,8 @@ export const mockData: ProjectsList = [
 	{
 		id: 1,
 		uuid: "abc",
-		created: new Date("2021-12-17T03:24:00"),
-		end_date: new Date("2022-10-09T03:24:00"),
+		created: "2021-12-17T03:24:00",
+		end_date: "2022-10-09T03:24:00",
 		title: "Biochar Project",
 		funding_needed: 30000,
 		currency: "USD",
@@ -24,8 +24,8 @@ export const mockData: ProjectsList = [
 	{
 		id: 2,
 		uuid: "def",
-		created: new Date("2022-01-01T03:24:00"),
-		end_date: new Date("2022-12-09T03:24:00"),
+		created: "2022-01-01T03:24:00",
+		end_date: "2022-12-09T03:24:00",
 		title: "Direct Air Capture  Project",
 		funding_needed: 17000,
 		currency: "USD",

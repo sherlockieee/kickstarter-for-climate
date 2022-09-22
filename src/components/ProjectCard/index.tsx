@@ -116,6 +116,8 @@ export function ProjectCard({ proj }: { proj: Project }) {
 							size="medium"
 							variant="contained"
 							color="primary"
+							component={NextLinkComposed}
+							to={{ pathname: `/checkout` }}
 						>
 							Back project
 						</Button>

@@ -19,6 +19,7 @@ import { styled } from "@mui/material/styles";
 import Card, { CardProps } from "@mui/material/Card";
 import { calculateDaysBetween } from "../../utils/dateUtils";
 import { DateTime } from "luxon";
+import { NextLinkComposed } from "../Link";
 
 const StyledProjectCard = styled(Card)<CardProps>(() => ({
 	boxShadow: "none",
@@ -102,6 +103,8 @@ export function ProjectContent({ proj }: { proj: Project }) {
 							size="medium"
 							variant="contained"
 							color="primary"
+							component={NextLinkComposed}
+							to={{ pathname: `/checkout` }}
 						>
 							Back project
 						</Button>
