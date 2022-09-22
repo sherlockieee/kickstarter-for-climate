@@ -8,13 +8,18 @@ import {
 	Typography,
 } from "@material-ui/core";
 import { Stack } from "@mui/system";
+import { DateTime } from "luxon";
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import { styled } from "@mui/material/styles";
+import Card, { CardProps } from "@mui/material/Card";
+
 import { Project } from "../../types/projects";
-import { formatCurrency } from "../../utils/formatCurrency";
+import { formatCurrency } from "../../utils/currencyUtils";
 import { NextLinkComposed } from "../Link";
 import { ProgressBar } from "../ProgressBar";
 import { core } from "../../constants/theme";
-import { styled } from "@mui/material/styles";
-import Card, { CardProps } from "@mui/material/Card";
+
+import { calculateDaysBetween } from "../../utils/dateUtils";
 
 const StyledProjectCard = styled(Card)<CardProps>(() => ({
 	boxShadow: "none",
@@ -31,7 +36,6 @@ export function ProjectCard({ proj }: { proj: Project }) {
 				<CardMedia
 					component="img"
 					image="https://arbordayblog.org/wp-content/uploads/2016/06/tree.jpg"
-					style={{ width: 240 }}
 				/>
 				<div>
 					<CardContent>
@@ -63,6 +67,14 @@ export function ProjectCard({ proj }: { proj: Project }) {
 									100
 								}
 							/>
+							<Typography variant="body2">
+								<AccessTimeIcon />
+								{calculateDaysBetween(
+									DateTime.now(),
+									DateTime.fromISO(proj.end_date)
+								)}{" "}
+								days left
+							</Typography>
 							<Stack direction="row" spacing={1}>
 								{proj.tags.map((tag) => (
 									<Chip

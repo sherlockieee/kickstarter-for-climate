@@ -9,13 +9,16 @@ import {
 	Typography,
 } from "@material-ui/core";
 import { Stack } from "@mui/system";
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
+
 import { Project } from "../../types/projects";
-import { formatCurrency } from "../../utils/formatCurrency";
-import { NextLinkComposed } from "../Link";
+import { formatCurrency } from "../../utils/currencyUtils";
 import { ProgressBar } from "../ProgressBar";
 import { core } from "../../constants/theme";
 import { styled } from "@mui/material/styles";
 import Card, { CardProps } from "@mui/material/Card";
+import { calculateDaysBetween } from "../../utils/dateUtils";
+import { DateTime } from "luxon";
 
 const StyledProjectCard = styled(Card)<CardProps>(() => ({
 	boxShadow: "none",
@@ -68,6 +71,20 @@ export function ProjectContent({ proj }: { proj: Project }) {
 									100
 								}
 							/>
+							<Typography
+								variant="body2"
+								style={{
+									display: "flex",
+									gap: 4,
+								}}
+							>
+								<AccessTimeIcon fontSize="small" />
+								{calculateDaysBetween(
+									DateTime.now(),
+									DateTime.fromISO(proj.end_date)
+								)}{" "}
+								days left
+							</Typography>
 							<Stack direction="row" spacing={1}>
 								{proj.tags.map((tag) => (
 									<Chip
@@ -92,9 +109,12 @@ export function ProjectContent({ proj }: { proj: Project }) {
 				</div>
 			</Box>
 			<Divider />
-			<Typography variant="body1" style={{ marginTop: "1rem" }}>
-				{proj.description}
-			</Typography>
+			<div style={{ marginTop: "1rem" }}>
+				<Typography variant="h3" gutterBottom>
+					About
+				</Typography>
+				<Typography variant="body1">{proj.description}</Typography>
+			</div>
 		</StyledProjectCard>
 	);
 }
