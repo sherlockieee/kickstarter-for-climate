@@ -36,6 +36,7 @@ export function ProjectCard({ proj }: { proj: Project }) {
 				<CardMedia
 					component="img"
 					image="https://arbordayblog.org/wp-content/uploads/2016/06/tree.jpg"
+					style={{ width: 240 }}
 				/>
 				<div>
 					<CardContent>
@@ -67,7 +68,10 @@ export function ProjectCard({ proj }: { proj: Project }) {
 									100
 								}
 							/>
-							<Typography variant="body2">
+							<Typography
+								variant="body2"
+								style={{ display: "flex", gap: 4 }}
+							>
 								<AccessTimeIcon />
 								{calculateDaysBetween(
 									DateTime.now(),
@@ -80,8 +84,7 @@ export function ProjectCard({ proj }: { proj: Project }) {
 									<Chip
 										label={tag.name}
 										key={tag.id}
-										color="primary"
-										variant="outlined"
+										color="secondary"
 									/>
 								))}
 							</Stack>
