@@ -23,7 +23,6 @@ function SignUpPage({}: Props) {
 			setError("You enter two different passwords. Please try again.");
 			return;
 		}
-		console.log(input);
 	};
 	return (
 		<Layout>

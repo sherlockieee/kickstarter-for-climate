@@ -1,14 +1,29 @@
 import axios from "axios";
 import { Project, ProjectsList } from "../types/projects";
 
-export async function getProjects() {
+declare module "axios" {
+	export interface AxiosRequestConfig {
+		tags: number[];
+	}
+}
+
+type Props = {
+	tags?: number[];
+	skip?: number;
+	limit?: number;
+};
+export async function getProjects(props: Props) {
+	const { tags = [], skip = 0, limit = 20 } = props;
 	const data: ProjectsList = await axios
-		.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/projects`)
+		.get(
+			`${process.env.NEXT_PUBLIC_BACKEND_URL}/projects?tags=${tags}&skip=${skip}&limit=${limit}`
+		)
 		.then((res) => res.data)
 		.catch((err) => {
 			console.error(err);
 			return [];
 		});
+
 	return data;
 }
 

@@ -13,7 +13,6 @@ function Login({}: Props) {
 
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
-		console.log(input);
 	};
 	return (
 		<Layout>

@@ -4,8 +4,14 @@ import { Typography } from "@material-ui/core";
 import { ProjectCard } from "../../components/ProjectCard";
 import { Stack } from "@mui/system";
 import { Layout } from "../../components/Layout";
+import { useState } from "react";
 
-export default function Home({ projects }: { projects: ProjectsList }) {
+export default function Home({
+	initialProjects,
+}: {
+	initialProjects: ProjectsList;
+}) {
+	const [projects, setProjects] = useState(initialProjects);
 	return (
 		<Layout>
 			<section>
@@ -21,7 +27,11 @@ export default function Home({ projects }: { projects: ProjectsList }) {
 				{projects.length > 0 ? (
 					<Stack direction="column" spacing={2}>
 						{projects.map((proj) => (
-							<ProjectCard proj={proj} key={proj.id} />
+							<ProjectCard
+								proj={proj}
+								key={proj.id}
+								setProjects={setProjects}
+							/>
 						))}
 					</Stack>
 				) : (
@@ -35,6 +45,6 @@ export default function Home({ projects }: { projects: ProjectsList }) {
 }
 
 export async function getServerSideProps() {
-	const projects = await getProjects();
-	return { props: { projects } };
+	const initialProjects = await getProjects({});
+	return { props: { initialProjects } };
 }
