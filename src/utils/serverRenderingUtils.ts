@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-export function refreshServerSidePage() {
+export function useRefreshServerSidePage() {
 	const router = useRouter();
 
 	const refreshData = () => {
