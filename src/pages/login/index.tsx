@@ -61,7 +61,7 @@ function Login({}: Props) {
 						component={NextLinkComposed}
 						to={{ pathname: "/signup" }}
 					>
-						Don't have an account? Sign up.
+						Don&quot;t have an account? Sign up.
 					</Button>
 				</form>
 			</Container>
