@@ -39,6 +39,7 @@ function Login({}: Props) {
 				>
 					<Input
 						placeholder="Enter your email..."
+						type="email"
 						value={input.email}
 						onChange={(e) =>
 							setInput({ ...input, email: e.target.value })
