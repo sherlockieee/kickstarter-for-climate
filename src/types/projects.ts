@@ -1,21 +1,20 @@
 interface Tag {
-    id: string,
-    name: string;
+	id: string;
+	name: string;
 }
 
 export interface Project {
-    id: number;
-    uuid: string;
-    title: string;
-    funding_needed: number;
-    currency: "USD" | "EUR";
-    total_raised: number;
-    total_backers: number;
-    description:
-      string;
-    created: Date;
-    end_date: Date;
-    tags: Tag[]
+	id: number;
+	uuid: string;
+	title: string;
+	funding_needed: number;
+	currency: "USD" | "EUR";
+	total_raised: number;
+	total_backers: number;
+	description: string;
+	created: string;
+	end_date: string;
+	tags: Tag[];
 }
 
-export type ProjectsList = Project[]
+export type ProjectsList = Project[];

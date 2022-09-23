@@ -7,7 +7,7 @@ describe("Navigation", () => {
 		cy.get("h1").contains("Crowdfund climate projects");
 
 		// Find a link with an href attribute containing "project" and click it
-		cy.get('a[href*="projects"]').first().click();
+		cy.get('a[href*="projects"]').first().click({ force: true });
 
 		// The new url should include "/projects"
 		cy.url().should("include", "/projects");

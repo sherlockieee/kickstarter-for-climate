@@ -39,12 +39,7 @@ export const Footer = () => {
 						>
 							Browse projects
 						</Typography>
-						{/* <a
-							href=
-							target="_blank"
-							rel="noopener noreferrer"
-							style={{ textDecorationColor: "white" }}
-						> */}
+
 						<Typography
 							variant="body1"
 							component={NextLinkComposed}
