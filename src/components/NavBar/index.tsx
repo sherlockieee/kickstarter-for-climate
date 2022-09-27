@@ -14,9 +14,12 @@ export const NavBar = () => {
 				<Toolbar>
 					<Typography
 						variant="h5"
+						component={NextLinkComposed}
+						to={{ pathname: "/projects" }}
 						style={{
 							flexGrow: 1,
 							color: theme.palette.secondary.main,
+							textDecoration: "none",
 						}}
 					>
 						X | Kickstarter for Climate

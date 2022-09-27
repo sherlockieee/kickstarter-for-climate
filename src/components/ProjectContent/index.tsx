@@ -91,8 +91,7 @@ export function ProjectContent({ proj }: { proj: Project }) {
 									<Chip
 										label={tag.name}
 										key={tag.id}
-										color="primary"
-										variant="outlined"
+										color="secondary"
 									/>
 								))}
 							</Stack>
