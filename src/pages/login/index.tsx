@@ -1,18 +1,29 @@
 import { Button, Container, Input, Typography } from "@material-ui/core";
+import axios from "axios";
 import React, { useState } from "react";
 import { Layout } from "../../components/Layout";
 import { NextLinkComposed } from "../../components/Link";
+import { getToken } from "../../services/user";
 
-type Props = {};
-
-function Login({}: Props) {
+function Login() {
+	const [isLoading, setIsLoading] = useState(false);
 	const [input, setInput] = useState({
 		email: "",
 		password: "",
 	});
+	const [error, setError] = useState("");
 
-	const handleSubmit = (e: React.FormEvent) => {
+	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
+
+		setIsLoading(true);
+		const { is_error, token, msg } = await getToken(input);
+		if (is_error) {
+			setError(msg);
+		} else {
+			console.log(token);
+		}
+		setIsLoading(false);
 	};
 	return (
 		<Layout>
