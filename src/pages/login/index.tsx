@@ -1,5 +1,6 @@
 import { Button, Container, Input, Typography } from "@material-ui/core";
-import axios from "axios";
+import ErrorIcon from "@mui/icons-material/Error";
+
 import React, { useState } from "react";
 import { Layout } from "../../components/Layout";
 import { NextLinkComposed } from "../../components/Link";
@@ -54,6 +55,7 @@ function Login() {
 						onChange={(e) =>
 							setInput({ ...input, email: e.target.value })
 						}
+						required
 					/>
 					<Input
 						placeholder="Enter your password..."
@@ -62,8 +64,28 @@ function Login() {
 						onChange={(e) =>
 							setInput({ ...input, password: e.target.value })
 						}
+						required
 					/>
-					<Button color="primary" variant="contained" type="submit">
+					{error && (
+						<Typography
+							variant="body1"
+							color="error"
+							style={{
+								display: "flex",
+								alignItems: "center",
+								gap: 8,
+							}}
+						>
+							<ErrorIcon />
+							{error}
+						</Typography>
+					)}
+					<Button
+						color="primary"
+						variant="contained"
+						type="submit"
+						disabled={isLoading}
+					>
 						Sign In{" "}
 					</Button>
 					<Button
