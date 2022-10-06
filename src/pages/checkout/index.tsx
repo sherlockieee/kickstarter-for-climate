@@ -1,26 +1,39 @@
-import { CircularProgress } from "@material-ui/core";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 import { Layout } from "../../components/Layout";
-import useUser from "../../hooks/useUser";
+import { useUser } from "../../hooks/useUser";
 
 type Props = {};
 
 const CheckoutPage = (props: Props) => {
-	const { user } = useUser({ redirectTo: "/login" });
+	const router = useRouter();
+	const { user, isError, isLoading } = useUser();
 
-	// Server-render loading state
-	if (!user || user.isLoggedIn === false) {
+	if (isError) {
+		router.push(
+			{
+				pathname: "/login",
+				query: { redirectTo: "/checkout" },
+			},
+			undefined,
+			{ shallow: true }
+		);
+		return;
+	}
+
+	if (isLoading) {
 		return (
 			<Layout>
-				<CircularProgress />
+				<div>Loading...</div>
 			</Layout>
 		);
 	}
 
-	// Once the user request finishes, show the user
 	return (
 		<Layout>
 			<div>CheckoutPage</div>
+			<div>{user!.email}</div>
 		</Layout>
 	);
 };

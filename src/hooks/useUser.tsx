@@ -1,33 +1,44 @@
-import { useEffect } from "react";
-import Router from "next/router";
-import useSWR from "swr";
-import { User } from "../types/user";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
-const fetcher = (...args: Parameters<typeof fetch>) =>
-	fetch(...args).then((res) => res.json());
-
-export default function useUser({
-	redirectTo = "",
-	redirectIfFound = false,
-} = {}) {
-	const { data: user } = useSWR<User>(
-		`${process.env.NEXT_PUBLIC_BACKEND_URL}/user`,
-		fetcher
-	);
+type UserObject = {
+	email: string;
+	full_name: string;
+	preferred_name: string;
+	is_active: boolean;
+	is_admin: boolean;
+	id: string;
+};
+export function useUser() {
+	const [user, setUser] = useState<UserObject | null>(null);
+	const [isError, setIsError] = useState(false);
+	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
-		// if no redirect needed, just return (example: already on /dashboard)
-		// if user data not yet there (fetch in progress, logged in or not) then don't do anything yet
-		if (!redirectTo || !user) return;
-		if (
-			// If redirectTo is set, redirect if the user was not found.
-			(redirectTo && !redirectIfFound && !user?.isLoggedIn) ||
-			// If redirectIfFound is also set, redirect if the user was found
-			(redirectIfFound && user?.isLoggedIn)
-		) {
-			Router.push(redirectTo);
-		}
-	}, [user, redirectIfFound, redirectTo]);
+		const fetchCurrentUser = async () => {
+			setIsLoading(true);
+			const res = await axios.get(
+				`${process.env.NEXT_PUBLIC_BACKEND_URL}/users/me`,
+				{
+					headers: {
+						"Content-Type": "application/json",
+						Authorization:
+							"Bearer " +
+							JSON.parse(localStorage.getItem("token") || ""),
+					},
+				}
+			);
+			setUser(res.data);
+			setIsError(false);
+			setIsLoading(false);
+		};
 
-	return { user };
+		fetchCurrentUser().catch((err) => {
+			setUser(null);
+			setIsError(true);
+			setIsLoading(false);
+		});
+	}, []);
+
+	return { user, isError, isLoading };
 }

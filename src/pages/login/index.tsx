@@ -1,5 +1,6 @@
 import { Button, Container, Input, Typography } from "@material-ui/core";
 import ErrorIcon from "@mui/icons-material/Error";
+import { useRouter } from "next/router";
 
 import React, { useState } from "react";
 import { Layout } from "../../components/Layout";
@@ -13,6 +14,7 @@ function Login() {
 		password: "",
 	});
 	const [error, setError] = useState("");
+	const router = useRouter();
 
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
@@ -22,7 +24,12 @@ function Login() {
 		if (is_error) {
 			setError(msg);
 		} else {
-			console.log(token);
+			localStorage.setItem("token", JSON.stringify(token!.access_token));
+			if (router.query.redirectTo) {
+				router.push(router.query.redirectTo as string);
+			} else {
+				router.push("/projects");
+			}
 		}
 		setIsLoading(false);
 	};
