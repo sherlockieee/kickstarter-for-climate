@@ -21,6 +21,7 @@ import { core } from "../../constants/theme";
 
 import { calculateDaysBetween } from "../../utils/dateUtils";
 import { getProjects } from "../../services/projects";
+import { Router, useRouter } from "next/router";
 
 const StyledProjectCard = styled(Card)<CardProps>(() => ({
 	boxShadow: "none",
@@ -37,6 +38,7 @@ export function ProjectCard({
 	proj: Project;
 	setProjects: React.Dispatch<React.SetStateAction<ProjectsList>>;
 }) {
+	const router = useRouter();
 	const handleTagClick = async (
 		e: React.MouseEvent<HTMLElement>,
 		tag: Tag

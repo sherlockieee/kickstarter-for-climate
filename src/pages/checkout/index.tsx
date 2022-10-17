@@ -1,29 +1,26 @@
-import { Typography } from "@material-ui/core";
+import { CircularProgress, Typography } from "@material-ui/core";
 
 import { Layout } from "../../components/Layout";
 import { useAuth } from "../../contexts/auth";
 
 const CheckoutPage = () => {
-	const { loading, user } = useAuth();
-
-	if (loading) {
-		return (
-			<Layout>
-				<div>Loading...</div>
-			</Layout>
-		);
-	}
+	const { user } = useAuth();
 
 	return (
 		<Layout>
 			<Typography variant="h1" align="center">
 				Checkout
 			</Typography>
-			<div>{user!.email}</div>
+			{user ? (
+				<div>{user.email}</div>
+			) : (
+				<CircularProgress color="primary" />
+			)}
 		</Layout>
 	);
 };
 
 CheckoutPage.requiresAuth = true;
+CheckoutPage.redirectUnauthenticatedTo = "/projects";
 
 export default CheckoutPage;

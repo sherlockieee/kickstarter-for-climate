@@ -46,7 +46,7 @@ export default function MyApp(props: CustomAppProps) {
 						dangerouslySetInnerHTML={{
 							__html: `if(!document.cookie || document.cookie.indexOf('token') === -1)
 				 {location.replace(
-				   "/login?next=" +
+				   "/login?redirectTo=" +
 					 encodeURIComponent(location.pathname + location.search)
 				 )}
 				 else {document.documentElement.classList.add("render")}`,
