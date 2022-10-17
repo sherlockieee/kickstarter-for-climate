@@ -4,5 +4,4 @@ export interface User {
 	name: string;
 	preferred_name: string;
 	email: string;
-	isLoggedIn: boolean;
 }

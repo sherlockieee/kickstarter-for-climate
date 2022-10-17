@@ -1,16 +1,16 @@
+import { Typography } from "@material-ui/core";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
 
 import { Layout } from "../../components/Layout";
-import { useUser } from "../../hooks/useUser";
+import { useAuth } from "../../contexts/auth";
 
 type Props = {};
 
 const CheckoutPage = (props: Props) => {
 	const router = useRouter();
-	const { user, isError, isLoading } = useUser();
+	const { loading, user } = useAuth();
 
-	if (isError) {
+	if (!user) {
 		router.push(
 			{
 				pathname: "/login",
@@ -22,7 +22,7 @@ const CheckoutPage = (props: Props) => {
 		return;
 	}
 
-	if (isLoading) {
+	if (loading) {
 		return (
 			<Layout>
 				<div>Loading...</div>
@@ -32,7 +32,9 @@ const CheckoutPage = (props: Props) => {
 
 	return (
 		<Layout>
-			<div>CheckoutPage</div>
+			<Typography variant="h1" align="center">
+				Checkout
+			</Typography>
 			<div>{user!.email}</div>
 		</Layout>
 	);

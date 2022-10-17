@@ -1,37 +1,33 @@
+import React, { useState } from "react";
 import { Button, Container, Input, Typography } from "@material-ui/core";
 import ErrorIcon from "@mui/icons-material/Error";
 import { useRouter } from "next/router";
 
-import React, { useState } from "react";
 import { Layout } from "../../components/Layout";
 import { NextLinkComposed } from "../../components/Link";
-import { getToken } from "../../services/user";
+import { useAuth } from "../../contexts/auth";
 
 function Login() {
-	const [isLoading, setIsLoading] = useState(false);
 	const [input, setInput] = useState({
 		email: "",
 		password: "",
 	});
 	const [error, setError] = useState("");
 	const router = useRouter();
+	const { login, loading } = useAuth();
 
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
-
-		setIsLoading(true);
-		const { is_error, token, msg } = await getToken(input);
-		if (is_error) {
-			setError(msg);
-		} else {
-			localStorage.setItem("token", JSON.stringify(token!.access_token));
+		try {
+			await login(input);
 			if (router.query.redirectTo) {
 				router.push(router.query.redirectTo as string);
 			} else {
 				router.push("/projects");
 			}
+		} catch (error) {
+			setError("Unable to authenticate. Please try again.");
 		}
-		setIsLoading(false);
 	};
 	return (
 		<Layout>
@@ -91,7 +87,7 @@ function Login() {
 						color="primary"
 						variant="contained"
 						type="submit"
-						disabled={isLoading}
+						disabled={loading || false}
 					>
 						Sign In{" "}
 					</Button>

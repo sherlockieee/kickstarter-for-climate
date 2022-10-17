@@ -5,6 +5,20 @@ type TokenProps = {
 	password: string;
 };
 
+export const getCurrentUser = async (token: string) => {
+	const res = await axios
+		.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/users/me`, {
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: "Bearer " + token || "",
+			},
+		})
+		.catch((err) => {
+			return { data: null };
+		});
+	return res;
+};
+
 export async function getToken({ email, password }: TokenProps) {
 	const formData = new FormData();
 	formData.append("username", email);
@@ -14,13 +28,13 @@ export async function getToken({ email, password }: TokenProps) {
 		.then((res) => {
 			return {
 				is_error: false,
-				token: res.data,
+				data: res.data.access_token,
 				msg: "",
 			};
 		})
 		.catch((err) => {
 			console.error(err);
-			return { is_error: true, msg: err.msg, token: {} };
+			return { is_error: true, msg: err.msg, data: {} };
 		});
 	return res;
 }

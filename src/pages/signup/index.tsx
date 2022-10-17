@@ -29,7 +29,7 @@ function SignUpPage({}: Props) {
 		}
 		setIsLoading(true);
 		const { reEnterPassword, ...newInput } = input;
-		const { user, msg, is_error } = await createUser(newInput);
+		const { msg, is_error } = await createUser(newInput);
 
 		if (is_error) {
 			setError(msg);
