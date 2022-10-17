@@ -1,26 +1,10 @@
 import { Typography } from "@material-ui/core";
-import { useRouter } from "next/router";
 
 import { Layout } from "../../components/Layout";
 import { useAuth } from "../../contexts/auth";
 
-type Props = {};
-
-const CheckoutPage = (props: Props) => {
-	const router = useRouter();
+const CheckoutPage = () => {
 	const { loading, user } = useAuth();
-
-	if (!user) {
-		router.push(
-			{
-				pathname: "/login",
-				query: { redirectTo: "/checkout" },
-			},
-			undefined,
-			{ shallow: true }
-		);
-		return;
-	}
 
 	if (loading) {
 		return (
@@ -39,5 +23,7 @@ const CheckoutPage = (props: Props) => {
 		</Layout>
 	);
 };
+
+CheckoutPage.requiresAuth = true;
 
 export default CheckoutPage;

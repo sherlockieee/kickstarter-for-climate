@@ -15,6 +15,7 @@ const AuthContext = createContext(
 			email: string;
 			password: string;
 		}) => Promise<void>;
+		authenticate: (token: string) => Promise<void>;
 		loading: boolean;
 		logout: ({ redirectLocation }: { redirectLocation: string }) => void;
 	}
@@ -30,6 +31,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 			const token = Cookies.get("token");
 			if (token) {
 				const { data: user } = await getCurrentUser(token);
+				console.log({ user });
 				if (user) setUser(user);
 			}
 			setLoading(false);
@@ -40,11 +42,14 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 	async function login(input: { email: string; password: string }) {
 		const { data: token } = await getToken(input);
 		if (token) {
-			Cookies.set("token", token, { expires: 60 });
-			const { data: user } = await getCurrentUser(token);
-			console.log(user);
-			setUser(user);
+			await authenticate(token);
 		}
+	}
+
+	async function authenticate(token: string) {
+		Cookies.set("token", token, { expires: 60 });
+		const { data: user } = await getCurrentUser(token);
+		setUser(user);
 	}
 
 	function logout({ redirectLocation }: { redirectLocation?: string }) {
@@ -58,6 +63,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 			value={{
 				isAuthenticated: !!user,
 				user,
+				authenticate,
 				login,
 				loading,
 				logout,
