@@ -17,12 +17,14 @@
     "moduleResolution": "node",
     "isolatedModules": true,
     "jsxImportSource": "@emotion/react",
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "strict": false
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx" ],
+    "**/*.tsx"
+  ],
   "exclude": [
     "node_modules"
   ]

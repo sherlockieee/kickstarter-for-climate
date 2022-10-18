@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
 	Box,
 	Button,
@@ -5,6 +6,7 @@ import {
 	CardContent,
 	CardMedia,
 	Chip,
+	TextField,
 	Typography,
 } from "@material-ui/core";
 import { Stack } from "@mui/system";
@@ -13,15 +15,12 @@ import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import { styled } from "@mui/material/styles";
 import Card, { CardProps } from "@mui/material/Card";
 
-import { Project, ProjectsList, Tag } from "../../types/projects";
+import { Project } from "../../types/projects";
 import { formatCurrency } from "../../utils/currencyUtils";
 import { NextLinkComposed } from "../Link";
 import { ProgressBar } from "../ProgressBar";
 import { core } from "../../constants/theme";
-
 import { calculateDaysBetween } from "../../utils/dateUtils";
-import { getProjects } from "../../services/projects";
-import { Router, useRouter } from "next/router";
 
 const StyledProjectCard = styled(Card)<CardProps>(() => ({
 	boxShadow: "none",
@@ -31,21 +30,12 @@ const StyledProjectCard = styled(Card)<CardProps>(() => ({
 	padding: "1rem",
 }));
 
-export function ProjectCard({
-	proj,
-	setProjects,
-}: {
-	proj: Project;
-	setProjects: React.Dispatch<React.SetStateAction<ProjectsList>>;
-}) {
-	const router = useRouter();
-	const handleTagClick = async (
-		e: React.MouseEvent<HTMLElement>,
-		tag: Tag
-	) => {
+export function CheckoutCard({ proj }: { proj: Project }) {
+	const [numberOfCredits, setNumberOfCredits] = useState(
+		Math.min(10, proj.needed_credits)
+	);
+	const handleSubmitForm = (e) => {
 		e.preventDefault();
-		const filteredProjects = await getProjects({ tags: [+tag.id] });
-		setProjects(filteredProjects);
 	};
 	return (
 		<StyledProjectCard key={proj.id} raised={false}>
@@ -58,7 +48,12 @@ export function ProjectCard({
 				<div>
 					<CardContent>
 						<Stack direction="column" spacing={1}>
-							<Typography variant="h5" component="div">
+							<Typography
+								variant="h5"
+								component={NextLinkComposed}
+								to={{ pathname: `/projects/${proj.id}` }}
+								style={{ textDecoration: "none" }}
+							>
 								{proj.title}
 							</Typography>
 							<div>
@@ -102,45 +97,81 @@ export function ProjectCard({
 										label={tag.name}
 										key={tag.id}
 										color="secondary"
-										onClick={(e) => handleTagClick(e, tag)}
 									/>
 								))}
 							</Stack>
-							<Typography
-								variant="body2"
-								paragraph
-								style={{
-									display: "-webkit-box",
-									WebkitLineClamp: 2,
-									WebkitBoxOrient: "vertical",
-									overflow: "hidden",
-								}}
-							>
-								{proj.description}
-							</Typography>
+							<form onSubmit={handleSubmitForm}>
+								<Typography variant="body1" gutterBottom>
+									Cost per credit:{" "}
+									{formatCurrency({
+										value: proj.cost_per_credit,
+										currency: proj.currency,
+									})}{" "}
+								</Typography>
+								<div
+									style={{
+										display: "flex",
+										flexDirection: "row",
+										alignItems: "center",
+										gap: 8,
+										marginBottom: "1rem",
+									}}
+								>
+									<Typography
+										variant="body1"
+										component="span"
+									>
+										Number of credits:{"  "}
+									</Typography>
+									<TextField
+										type="number"
+										inputProps={{
+											type: "number",
+										}}
+										value={numberOfCredits}
+										onChange={(e) => {
+											if (isNaN(+e.target.value)) {
+												return;
+											}
+											const number = Math.max(
+												Math.min(
+													+e.target.value,
+													proj.needed_credits
+												),
+												1
+											);
+											setNumberOfCredits(number);
+										}}
+										size="small"
+										variant="outlined"
+										style={{ width: "10ch" }}
+									/>
+								</div>
+								<div>
+									<Typography
+										variant="body1"
+										component="span"
+									>
+										Total cost ={" "}
+									</Typography>
+									<Typography variant="h6" component="span">
+										{formatCurrency({
+											value:
+												proj.cost_per_credit *
+												numberOfCredits,
+											currency: proj.currency,
+										})}
+									</Typography>
+								</div>
+							</form>
 						</Stack>
 					</CardContent>
 					<CardActions>
 						<Button
 							size="medium"
-							variant="text"
-							color="primary"
-							component={NextLinkComposed}
-							to={{ pathname: `/projects/${proj.id}` }}
-						>
-							Learn more
-						</Button>
-						<Button
-							size="medium"
 							variant="contained"
 							color="primary"
-							component={NextLinkComposed}
-							to={{
-								pathname: `/checkout`,
-								query: {
-									id: proj.id,
-								},
-							}}
+							onClick={handleSubmitForm}
 						>
 							Back project
 						</Button>

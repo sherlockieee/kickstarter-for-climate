@@ -44,9 +44,12 @@ export const AuthProvider = ({ children }) => {
 
 	async function authenticate(token: string) {
 		setLoading(true);
-		Cookies.set("token", token, { expires: 60 });
+		Cookies.set("token", token);
+		console.log(token);
 		const { data: user } = await getCurrentUser(token);
+		console.log(user);
 		setUser(user);
+
 		setLoading(false);
 	}
 
@@ -65,7 +68,6 @@ export const AuthProvider = ({ children }) => {
 	useEffect(() => {
 		const Component = children.type;
 		// If it doesn't require auth, everything's good.
-		console.log(Component.requiresAuth);
 		if (!Component.requiresAuth) return;
 
 		// If we're already authenticated, everything's good.
