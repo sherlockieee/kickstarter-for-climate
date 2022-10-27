@@ -9,6 +9,7 @@ import {
 	TextField,
 	Typography,
 } from "@material-ui/core";
+import ErrorIcon from "@mui/icons-material/Error";
 import { Stack } from "@mui/system";
 import { DateTime } from "luxon";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
@@ -21,6 +22,8 @@ import { NextLinkComposed } from "../Link";
 import { ProgressBar } from "../ProgressBar";
 import { core } from "../../constants/theme";
 import { calculateDaysBetween } from "../../utils/dateUtils";
+import { createTransaction } from "../../services/transactions";
+import { useRouter } from "next/router";
 
 const StyledProjectCard = styled(Card)<CardProps>(() => ({
 	boxShadow: "none",
@@ -32,10 +35,27 @@ const StyledProjectCard = styled(Card)<CardProps>(() => ({
 
 export function CheckoutCard({ proj }: { proj: Project }) {
 	const [numberOfCredits, setNumberOfCredits] = useState(
-		Math.min(10, proj.needed_credits)
+		Math.min(10, proj.total_credits - proj.credits_sold)
 	);
-	const handleSubmitForm = (e) => {
+	const [error, setError] = useState("");
+
+	const router = useRouter();
+	const handleSubmitForm = async (e) => {
 		e.preventDefault();
+		const res = await createTransaction({
+			quantity: numberOfCredits,
+			amount: proj.cost_per_credit * numberOfCredits,
+			currency: proj.currency,
+			project_id: proj.id,
+		});
+
+		if (res.err) {
+			setError(res.err);
+			return;
+		}
+		console.log(res);
+
+		router.push(`/checkout/success?id=${proj.id}`);
 	};
 	return (
 		<StyledProjectCard key={proj.id} raised={false}>
@@ -136,7 +156,8 @@ export function CheckoutCard({ proj }: { proj: Project }) {
 											const number = Math.max(
 												Math.min(
 													+e.target.value,
-													proj.needed_credits
+													proj.total_credits -
+														proj.credits_sold
 												),
 												1
 											);
@@ -176,6 +197,20 @@ export function CheckoutCard({ proj }: { proj: Project }) {
 							Back project
 						</Button>
 					</CardActions>
+					{error && (
+						<Typography
+							variant="body1"
+							color="error"
+							style={{
+								display: "flex",
+								alignItems: "center",
+								gap: 8,
+							}}
+						>
+							<ErrorIcon />
+							{error}
+						</Typography>
+					)}
 				</div>
 			</Box>
 		</StyledProjectCard>

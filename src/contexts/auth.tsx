@@ -44,12 +44,15 @@ export const AuthProvider = ({ children }) => {
 
 	async function authenticate(token: string) {
 		setLoading(true);
-		Cookies.set("token", token);
-		console.log(token);
+		console.log("AUTHENTICATING");
 		const { data: user } = await getCurrentUser(token);
-		console.log(user);
-		setUser(user);
-
+		if (!user) {
+			setUser(null);
+			Cookies.remove("token");
+		} else {
+			setUser(user);
+			Cookies.set("token", token);
+		}
 		setLoading(false);
 	}
 
