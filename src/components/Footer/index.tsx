@@ -24,7 +24,13 @@ export const Footer = () => {
 					>
 						© 2022 X | Kickstarter for Climate
 					</Typography>
-					<Box style={{ display: "flex", flexDirection: "column" }}>
+					<Box
+						style={{
+							display: "flex",
+							flexDirection: "column",
+							marginBottom: "1rem",
+						}}
+					>
 						<Typography
 							variant="body1"
 							component={NextLinkComposed}

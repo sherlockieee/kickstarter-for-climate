@@ -8,7 +8,6 @@
     ],
     "allowJs": true,
     "skipLibCheck": true,
-    "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "incremental": true,
@@ -18,12 +17,14 @@
     "moduleResolution": "node",
     "isolatedModules": true,
     "jsxImportSource": "@emotion/react",
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "strict": false
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx" ],
+    "**/*.tsx"
+  ],
   "exclude": [
     "node_modules"
   ]

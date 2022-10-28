@@ -1,8 +1,11 @@
 import { Button, Container, Input, Typography } from "@material-ui/core";
 import ErrorIcon from "@mui/icons-material/Error";
-import React, { useState } from "react";
+import { useRouter } from "next/router";
+import { useState } from "react";
+
 import { Layout } from "../../components/Layout";
 import { NextLinkComposed } from "../../components/Link";
+import { createUser } from "../../services/user";
 
 type Props = {};
 
@@ -14,15 +17,26 @@ function SignUpPage({}: Props) {
 		password: "",
 		reEnterPassword: "",
 	});
-
+	const [isLoading, setIsLoading] = useState(false);
 	const [error, setError] = useState("");
+	const router = useRouter();
 
-	const handleSubmit = (e: React.FormEvent) => {
+	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
 		if (input.password !== input.reEnterPassword) {
 			setError("You enter two different passwords. Please try again.");
 			return;
 		}
+		setIsLoading(true);
+		const { reEnterPassword, ...newInput } = input;
+		const { msg, is_error } = await createUser(newInput);
+
+		if (is_error) {
+			setError(msg);
+		} else {
+			router.push("/login");
+		}
+		setIsLoading(false);
 	};
 	return (
 		<Layout>
@@ -66,6 +80,7 @@ function SignUpPage({}: Props) {
 						onChange={(e) =>
 							setInput({ ...input, full_name: e.target.value })
 						}
+						required
 					/>
 					<Input
 						placeholder="Enter your preferred name"
@@ -76,8 +91,10 @@ function SignUpPage({}: Props) {
 								preferred_name: e.target.value,
 							})
 						}
+						required
 					/>
 					<Input
+						required
 						placeholder="Enter your email"
 						type="email"
 						value={input.email}
@@ -86,6 +103,7 @@ function SignUpPage({}: Props) {
 						}
 					/>
 					<Input
+						required
 						placeholder="Enter your password"
 						value={input.password}
 						type="password"
@@ -94,6 +112,7 @@ function SignUpPage({}: Props) {
 						}
 					/>
 					<Input
+						required
 						placeholder="Re-enter your password"
 						value={input.reEnterPassword}
 						type="password"

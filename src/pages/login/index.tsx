@@ -1,18 +1,33 @@
-import { Button, Container, Input, Typography } from "@material-ui/core";
 import React, { useState } from "react";
+import { Button, Container, Input, Typography } from "@material-ui/core";
+import ErrorIcon from "@mui/icons-material/Error";
+import { useRouter } from "next/router";
+
 import { Layout } from "../../components/Layout";
 import { NextLinkComposed } from "../../components/Link";
+import { useAuth } from "../../contexts/auth";
 
-type Props = {};
-
-function Login({}: Props) {
+function Login() {
 	const [input, setInput] = useState({
 		email: "",
 		password: "",
 	});
+	const [error, setError] = useState("");
+	const router = useRouter();
+	const { login, loading } = useAuth();
 
-	const handleSubmit = (e: React.FormEvent) => {
+	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
+		try {
+			await login(input);
+			if (router.query.redirectTo) {
+				router.push(router.query.redirectTo as string);
+			} else {
+				router.push("/projects");
+			}
+		} catch (error) {
+			setError("Unable to authenticate. Please try again.");
+		}
 	};
 	return (
 		<Layout>
@@ -43,6 +58,7 @@ function Login({}: Props) {
 						onChange={(e) =>
 							setInput({ ...input, email: e.target.value })
 						}
+						required
 					/>
 					<Input
 						placeholder="Enter your password..."
@@ -51,8 +67,28 @@ function Login({}: Props) {
 						onChange={(e) =>
 							setInput({ ...input, password: e.target.value })
 						}
+						required
 					/>
-					<Button color="primary" variant="contained" type="submit">
+					{error && (
+						<Typography
+							variant="body1"
+							color="error"
+							style={{
+								display: "flex",
+								alignItems: "center",
+								gap: 8,
+							}}
+						>
+							<ErrorIcon />
+							{error}
+						</Typography>
+					)}
+					<Button
+						color="primary"
+						variant="contained"
+						type="submit"
+						disabled={loading || false}
+					>
 						Sign In{" "}
 					</Button>
 					<Button

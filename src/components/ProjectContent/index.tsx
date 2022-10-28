@@ -103,7 +103,12 @@ export function ProjectContent({ proj }: { proj: Project }) {
 							variant="contained"
 							color="primary"
 							component={NextLinkComposed}
-							to={{ pathname: `/checkout` }}
+							to={{
+								pathname: `/checkout`,
+								query: {
+									id: proj.id,
+								},
+							}}
 						>
 							Back project
 						</Button>
