@@ -1,11 +1,9 @@
 import { CircularProgress, Typography } from "@material-ui/core";
-import { useRouter } from "next/router";
 
 import { Layout } from "../../components/Layout";
 import { useAuth } from "../../contexts/auth";
 import { getOneProject } from "../../services/projects";
-
-import { CheckoutCard } from "../../components/CheckoutCard";
+import { ProjectContent } from "../../components/ProjectContent";
 import { Project } from "../../types/projects";
 
 const CheckoutPage = ({ project }: { project: Project }) => {
@@ -22,9 +20,9 @@ const CheckoutPage = ({ project }: { project: Project }) => {
 	return (
 		<Layout>
 			<Typography variant="h1" align="center" gutterBottom>
-				Back this project
+				Project backed successful!
 			</Typography>
-			<CheckoutCard proj={project} />
+			<ProjectContent proj={project} />
 		</Layout>
 	);
 };

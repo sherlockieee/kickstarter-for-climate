@@ -23,7 +23,7 @@ interface Params extends ParsedUrlQuery {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-	let data = await getProjects();
+	let data = await getProjects({});
 
 	const paths = data.map((proj) => ({ params: { id: proj.id.toString() } }));
 

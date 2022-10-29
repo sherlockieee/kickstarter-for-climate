@@ -1,4 +1,4 @@
-interface Tag {
+export interface Tag {
 	id: string;
 	name: string;
 }
@@ -15,6 +15,9 @@ export interface Project {
 	created: string;
 	end_date: string;
 	tags: Tag[];
+	credits_sold: number;
+	total_credits: number;
+	cost_per_credit: number;
 }
 
 export type ProjectsList = Project[];

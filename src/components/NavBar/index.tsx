@@ -1,8 +1,10 @@
 import { AppBar, Box, Button, Toolbar, Typography } from "@material-ui/core";
 import theme from "../../constants/theme";
+import { useAuth } from "../../contexts/auth";
 import { NextLinkComposed } from "../Link";
 
 export const NavBar = () => {
+	const { user, logout } = useAuth();
 	return (
 		<Box sx={{ display: "flex" }}>
 			<AppBar
@@ -14,9 +16,12 @@ export const NavBar = () => {
 				<Toolbar>
 					<Typography
 						variant="h5"
+						component={NextLinkComposed}
+						to={{ pathname: "/projects" }}
 						style={{
 							flexGrow: 1,
 							color: theme.palette.secondary.main,
+							textDecoration: "none",
 						}}
 					>
 						X | Kickstarter for Climate
@@ -36,10 +41,23 @@ export const NavBar = () => {
 							variant="contained"
 							color="primary"
 							component={NextLinkComposed}
+							size="medium"
 							to={{ pathname: "/projects" }}
 						>
-							Browse projects
+							Browse Projects
 						</Button>
+
+						{user && (
+							<Button
+								variant="text"
+								color="primary"
+								onClick={() => {
+									logout({ redirectLocation: "/projects" });
+								}}
+							>
+								Logout
+							</Button>
+						)}
 					</Box>
 				</Toolbar>
 			</AppBar>

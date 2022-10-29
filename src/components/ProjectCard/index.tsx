@@ -13,13 +13,15 @@ import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import { styled } from "@mui/material/styles";
 import Card, { CardProps } from "@mui/material/Card";
 
-import { Project } from "../../types/projects";
+import { Project, ProjectsList, Tag } from "../../types/projects";
 import { formatCurrency } from "../../utils/currencyUtils";
 import { NextLinkComposed } from "../Link";
 import { ProgressBar } from "../ProgressBar";
 import { core } from "../../constants/theme";
 
 import { calculateDaysBetween } from "../../utils/dateUtils";
+import { getProjects } from "../../services/projects";
+import { Router, useRouter } from "next/router";
 
 const StyledProjectCard = styled(Card)<CardProps>(() => ({
 	boxShadow: "none",
@@ -29,7 +31,22 @@ const StyledProjectCard = styled(Card)<CardProps>(() => ({
 	padding: "1rem",
 }));
 
-export function ProjectCard({ proj }: { proj: Project }) {
+export function ProjectCard({
+	proj,
+	setProjects,
+}: {
+	proj: Project;
+	setProjects: React.Dispatch<React.SetStateAction<ProjectsList>>;
+}) {
+	const router = useRouter();
+	const handleTagClick = async (
+		e: React.MouseEvent<HTMLElement>,
+		tag: Tag
+	) => {
+		e.preventDefault();
+		const filteredProjects = await getProjects({ tags: [+tag.id] });
+		setProjects(filteredProjects);
+	};
 	return (
 		<StyledProjectCard key={proj.id} raised={false}>
 			<Box style={{ display: "flex" }}>
@@ -85,6 +102,7 @@ export function ProjectCard({ proj }: { proj: Project }) {
 										label={tag.name}
 										key={tag.id}
 										color="secondary"
+										onClick={(e) => handleTagClick(e, tag)}
 									/>
 								))}
 							</Stack>
@@ -117,7 +135,12 @@ export function ProjectCard({ proj }: { proj: Project }) {
 							variant="contained"
 							color="primary"
 							component={NextLinkComposed}
-							to={{ pathname: `/checkout` }}
+							to={{
+								pathname: `/checkout`,
+								query: {
+									id: proj.id,
+								},
+							}}
 						>
 							Back project
 						</Button>
