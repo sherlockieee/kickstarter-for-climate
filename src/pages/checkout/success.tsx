@@ -4,8 +4,9 @@ import { Layout } from "../../components/Layout";
 import { useAuth } from "../../contexts/auth";
 import { getOneProject } from "../../services/projects";
 import { ProjectContent } from "../../components/ProjectContent";
+import { Project } from "../../types/projects";
 
-const CheckoutPage = ({ project }) => {
+const CheckoutPage = ({ project }: { project: Project }) => {
 	const { user } = useAuth();
 
 	if (!user) {
@@ -29,7 +30,7 @@ const CheckoutPage = ({ project }) => {
 CheckoutPage.requiresAuth = true;
 CheckoutPage.redirectUnauthenticatedTo = "/projects";
 
-export const getServerSideProps = async ({ query }) => {
+export const getServerSideProps = async ({ query }: any) => {
 	const project = await getOneProject(query?.id.toString());
 	return { props: { project } };
 };

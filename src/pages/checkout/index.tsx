@@ -6,10 +6,10 @@ import { useAuth } from "../../contexts/auth";
 import { getOneProject } from "../../services/projects";
 
 import { CheckoutCard } from "../../components/CheckoutCard";
+import { Project } from "../../types/projects";
 
-const CheckoutPage = ({ project }) => {
+const CheckoutPage = ({ project }: { project: Project }) => {
 	const { user } = useAuth();
-	const router = useRouter();
 
 	if (!user) {
 		return (
@@ -32,7 +32,7 @@ const CheckoutPage = ({ project }) => {
 CheckoutPage.requiresAuth = true;
 CheckoutPage.redirectUnauthenticatedTo = "/projects";
 
-export const getServerSideProps = async ({ query }) => {
+export const getServerSideProps = async ({ query }: any) => {
 	const project = await getOneProject(query?.id.toString());
 	return { props: { project } };
 };

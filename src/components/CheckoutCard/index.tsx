@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import {
 	Box,
 	Button,
@@ -40,7 +40,9 @@ export function CheckoutCard({ proj }: { proj: Project }) {
 	const [error, setError] = useState("");
 
 	const router = useRouter();
-	const handleSubmitForm = async (e) => {
+	const handleSubmitForm = async (
+		e: React.MouseEvent<HTMLElement> | React.FormEvent<HTMLFormElement>
+	) => {
 		e.preventDefault();
 		const res = await createTransaction({
 			quantity: numberOfCredits,

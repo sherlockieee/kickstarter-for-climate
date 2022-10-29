@@ -11,7 +11,7 @@ export const mockData: ProjectsList = [
 		funding_needed: 30000,
 		currency: "USD",
 		total_raised: 15000,
-		total_backers: 380,
+		total_backers: 50,
 		description:
 			"We hope to remove 10,000 tonnes of CO2 by 2025 using biochar as a fertilizer in rural regions in Vietnam. This project has been piloted in Da Nang, and the result has been positive: farms with biochar application are able to produce 30% more output while also drawing down 43% more carbon into the soil.",
 		tags: [
@@ -20,6 +20,9 @@ export const mockData: ProjectsList = [
 				name: "Agriculture",
 			},
 		],
+		total_credits: 100,
+		cost_per_credit: 300,
+		credits_sold: 50,
 	},
 	{
 		id: 2,
@@ -29,7 +32,7 @@ export const mockData: ProjectsList = [
 		title: "Direct Air Capture  Project",
 		funding_needed: 17000,
 		currency: "USD",
-		total_raised: 12800.37,
+		total_raised: 5000,
 		total_backers: 12,
 		description:
 			"Direct air capture draws carbon dioxide directly from the air and creates rocks that can then be used in other industrial applications. We believe each of these carbon credits will be worth a lot because they are pure carbon draw down produced at industrial level scale. The money would go into producing more machinery as well as R & D.",
@@ -43,25 +46,9 @@ export const mockData: ProjectsList = [
 				name: "Permanent (100+ years)",
 			},
 		],
-	},
-	{
-		id: 3,
-		uuid: "ghj",
-		created: "2022-01-01T03:24:00",
-		end_date: "2022-12-09T03:24:00",
-		title: "Direct Air Capture  Project #2",
-		funding_needed: 17000,
-		currency: "USD",
-		total_raised: 28000.37,
-		total_backers: 12,
-		description:
-			"Direct air capture draws carbon dioxide directly from the air and creates rocks that can then be used in other industrial applications. We believe each of these carbon credits will be worth a lot because they are pure carbon draw down produced at industrial level scale. The money would go into producing more machinery as well as R & D.",
-		tags: [
-			{
-				id: "2",
-				name: "Carbon capture & storage",
-			},
-		],
+		total_credits: 100,
+		cost_per_credit: 170,
+		credits_sold: 50,
 	},
 ];
 
