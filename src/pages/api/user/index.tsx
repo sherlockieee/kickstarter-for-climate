@@ -3,11 +3,11 @@ import type { User } from "../../../types/user";
 
 export const mockUser: User = {
 	id: 1,
-	uuid: "abc",
-	name: "Ha",
+	full_name: "Ha",
 	preferred_name: "Ha",
 	email: "phtn@abc.com",
-	isLoggedIn: false,
+	is_active: true,
+	is_admin: false,
 };
 
 export default function handler(
