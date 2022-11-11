@@ -98,20 +98,22 @@ export function ProjectContent({ proj }: { proj: Project }) {
 						</Stack>
 					</CardContent>
 					<CardActions>
-						<Button
-							size="medium"
-							variant="contained"
-							color="primary"
-							component={NextLinkComposed}
-							to={{
-								pathname: `/checkout`,
-								query: {
-									id: proj.id,
-								},
-							}}
-						>
-							Back project
-						</Button>
+						{proj.credits_sold < proj.total_credits && (
+							<Button
+								size="medium"
+								variant="contained"
+								color="primary"
+								component={NextLinkComposed}
+								to={{
+									pathname: `/checkout`,
+									query: {
+										id: proj.id,
+									},
+								}}
+							>
+								Back project
+							</Button>
+						)}
 					</CardActions>
 				</div>
 			</Box>

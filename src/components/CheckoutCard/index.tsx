@@ -190,14 +190,16 @@ export function CheckoutCard({ proj }: { proj: Project }) {
 						</Stack>
 					</CardContent>
 					<CardActions>
-						<Button
-							size="medium"
-							variant="contained"
-							color="primary"
-							onClick={handleSubmitForm}
-						>
-							Back project
-						</Button>
+						{proj.credits_sold < proj.total_credits && (
+							<Button
+								size="medium"
+								variant="contained"
+								color="primary"
+								onClick={handleSubmitForm}
+							>
+								Back project
+							</Button>
+						)}
 					</CardActions>
 					{error && (
 						<Typography

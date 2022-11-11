@@ -20,7 +20,11 @@ const CheckoutPage = ({ project }: { project: Project }) => {
 	return (
 		<Layout>
 			<Typography variant="h1" align="center" gutterBottom>
-				Project backed successful!
+				Project backed successfully!
+			</Typography>
+			<Typography variant="body1" align="center" gutterBottom>
+				You will receive an email confirmation soon! Thank you for
+				supporting.
 			</Typography>
 			<ProjectContent proj={project} />
 		</Layout>
