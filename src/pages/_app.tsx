@@ -55,10 +55,10 @@ export default function MyApp(props: CustomAppProps) {
 				)}
 			</Head>
 			<ThemeProvider theme={theme}>
-				<CssBaseline />
 				<AuthProvider>
 					<Component {...pageProps} />
 				</AuthProvider>
+				<CssBaseline />
 			</ThemeProvider>
 		</CacheProvider>
 	);
