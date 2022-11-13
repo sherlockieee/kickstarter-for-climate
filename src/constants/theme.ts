@@ -28,6 +28,9 @@ const theme = createTheme({
 			main: "#C95234",
 			contrastText: core.white,
 		},
+		info: {
+			main: core.white,
+		},
 	},
 	typography: {
 		fontFamily: "'DM Sans', sans-serif",
@@ -64,6 +67,17 @@ const theme = createTheme({
 		},
 	},
 });
+
+declare module "@mui/material/styles" {
+	interface Palette {
+		neutral: Palette["primary"];
+	}
+
+	// allow configuration using `createTheme`
+	interface PaletteOptions {
+		neutral?: PaletteOptions["primary"];
+	}
+}
 
 theme.overrides = {
 	MuiButton: {

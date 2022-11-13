@@ -1,7 +1,9 @@
+import React, { useState } from "react";
 import { CircularProgress, Typography } from "@material-ui/core";
 
 import { Layout } from "../../components/Layout";
 import { useAuth } from "../../contexts/auth";
+import ProfileTab from "../../components/ProfileTab";
 
 const ProfilePage = () => {
 	const { user } = useAuth();
@@ -17,8 +19,9 @@ const ProfilePage = () => {
 	return (
 		<Layout>
 			<Typography variant="h1" align="center" gutterBottom>
-				Projects owned
+				Profile
 			</Typography>
+			<ProfileTab />
 		</Layout>
 	);
 };
