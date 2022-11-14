@@ -1,5 +1,5 @@
 import { Button } from "@material-ui/core";
-import { NextLinkComposed } from "../../components/Link";
+import { NextLinkComposed } from "../Link";
 
 type ButtonOverrideProps = {
 	variant?: "contained" | "text" | "outlined";

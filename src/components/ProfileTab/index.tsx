@@ -7,6 +7,8 @@ import { withRouter } from "next/router";
 import theme from "../../constants/theme";
 import { Tab } from "@material-ui/core";
 import Link from "next/link";
+import { OwnerSubpage } from "../../views/profilePage/ownerSubpage";
+import { BackerSubpage } from "../../views/profilePage/backerSubpage";
 
 function a11yProps(value: string) {
 	return {
@@ -17,28 +19,25 @@ function a11yProps(value: string) {
 
 const SubpageInfo = [
 	{
-		name: "owner",
-		param: "owner",
-		label: "Projects you own",
-	},
-	{
 		name: "backer",
 		param: "backer",
 		label: "Projects you fund",
 	},
+	{
+		name: "owner",
+		param: "owner",
+		label: "Projects you own",
+	},
 ];
-const OwnerSubpage = () => {
-	return <div>Owner</div>;
-};
-
-const BackerSubpage = () => {
-	return <div>Backer</div>;
-};
 
 function ProfileTab({ router }) {
 	const {
 		query: { tab },
 	} = router;
+	if (!tab) {
+		router.query.tab = "backer";
+		router.push(router);
+	}
 	const [value, setValue] = useState(tab);
 
 	const handleChange = (event: React.SyntheticEvent, newValue: string) => {
@@ -96,13 +95,14 @@ function ProfileTab({ router }) {
 									</Typography>
 								</Link>
 							}
+							value={subpage.name}
 							{...a11yProps(subpage.name)}
 						/>
 					))}
 				</Tabs>
 			</Box>
-			{tab === "owner" && <OwnerSubpage />}
-			{tab === "backer" && <BackerSubpage />}
+			{<BackerSubpage hidden={tab !== "backer"} />}
+			{<OwnerSubpage hidden={tab !== "owner"} />}
 		</Box>
 	);
 }

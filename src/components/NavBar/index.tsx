@@ -1,14 +1,5 @@
 import { useState } from "react";
-import {
-	AppBar,
-	Box,
-	Button,
-	ListItemIcon,
-	MenuItem,
-	Toolbar,
-	Tooltip,
-	Typography,
-} from "@material-ui/core";
+import { AppBar, Box, Toolbar, Tooltip, Typography } from "@material-ui/core";
 import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
 
@@ -16,6 +7,7 @@ import theme from "../../constants/theme";
 import { useAuth } from "../../contexts/auth";
 import { NextLinkComposed } from "../Link";
 import MenuDropDown from "./MenuDropdown.tsx";
+import { ApplyButton, ProjectButton } from "../CommonButtons";
 
 export const NavBar = () => {
 	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -48,25 +40,8 @@ export const NavBar = () => {
 							X | Kickstarter for Climate
 						</Typography>
 						<Box style={{ display: "flex", gap: `1rem` }}>
-							<Button
-								variant="outlined"
-								color="primary"
-								component={NextLinkComposed}
-								to="https://forms.gle/v5MZhi4pvoCLMyfa7"
-								target="_blank"
-								rel="noopener noreferrer"
-							>
-								Apply for funding{" "}
-							</Button>
-							<Button
-								variant="contained"
-								color="primary"
-								component={NextLinkComposed}
-								size="medium"
-								to={{ pathname: "/projects" }}
-							>
-								Browse Projects
-							</Button>
+							<ApplyButton variant="outlined" />
+							<ProjectButton />
 
 							{user && (
 								<Tooltip title="Account settings">
