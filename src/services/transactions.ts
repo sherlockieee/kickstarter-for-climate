@@ -25,3 +25,24 @@ export async function createTransaction(data: Props) {
 
 	return res;
 }
+
+export async function getTransactionsForOneProject(id: string, token?: string) {
+	if (!token) {
+		token = Cookies.get("token");
+	}
+	const headers = { Authorization: `Bearer ${token}` };
+
+	const res = await axios
+		.get(
+			`${process.env.NEXT_PUBLIC_BACKEND_URL}/transactions/project/${id}`,
+			{ headers }
+		)
+		.then((res) => {
+			return res.data;
+		})
+		.catch((err) => {
+			console.error(err);
+		});
+
+	return res;
+}
