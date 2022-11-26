@@ -20,4 +20,8 @@ export interface Project {
 	cost_per_credit: number;
 }
 
+export interface ProjectInProfile extends Project {
+	total_credits_bought: number;
+}
+
 export type ProjectsList = Project[];

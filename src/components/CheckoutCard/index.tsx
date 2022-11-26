@@ -55,7 +55,6 @@ export function CheckoutCard({ proj }: { proj: Project }) {
 			setError(res.err);
 			return;
 		}
-		console.log(res);
 
 		router.push(`/checkout/success?id=${proj.id}`);
 	};

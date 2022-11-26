@@ -1,17 +1,36 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 import { Project, ProjectsList } from "../types/projects";
+import qs from "qs";
 
 type Props = {
 	tags?: number[];
 	skip?: number;
 	limit?: number;
+	filtered_status?: string[];
 };
 export async function getProjects(props: Props) {
-	const { tags = [], skip = 0, limit = 20 } = props;
+	const {
+		tags = [],
+		skip = 0,
+		limit = 20,
+		filtered_status = ["IN_FUNDING"],
+	} = props;
 	const data: ProjectsList = await axios
 		.get<Props, { data: ProjectsList }>(
-			`${process.env.NEXT_PUBLIC_BACKEND_URL}/projects?tags=${tags}&skip=${skip}&limit=${limit}`
+			`${process.env.NEXT_PUBLIC_BACKEND_URL}/projects`,
+			{
+				params: {
+					tags,
+					skip,
+					limit,
+					filtered_status,
+				},
+
+				paramsSerializer: (params) => {
+					return qs.stringify(params, { arrayFormat: "repeat" });
+				},
+			}
 		)
 		.then((res) => res.data)
 		.catch((err) => {

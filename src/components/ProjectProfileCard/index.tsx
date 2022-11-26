@@ -13,15 +13,12 @@ import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import { styled } from "@mui/material/styles";
 import Card, { CardProps } from "@mui/material/Card";
 
-import { Project, ProjectsList, Tag } from "../../types/projects";
 import { formatCurrency } from "../../utils/currencyUtils";
 import { NextLinkComposed } from "../Link";
 import { ProgressBar } from "../ProgressBar";
 import { core } from "../../constants/theme";
-
 import { calculateDaysBetween } from "../../utils/dateUtils";
-import { getProjects } from "../../services/projects";
-import { useRouter } from "next/router";
+import { ProjectInProfile } from "../../types/projects";
 
 const StyledProjectCard = styled(Card)<CardProps>(() => ({
 	boxShadow: "none",
@@ -31,22 +28,7 @@ const StyledProjectCard = styled(Card)<CardProps>(() => ({
 	padding: "1rem",
 }));
 
-export function ProjectCard({
-	proj,
-	setProjects,
-}: {
-	proj: Project;
-	setProjects: React.Dispatch<React.SetStateAction<ProjectsList>>;
-}) {
-	const router = useRouter();
-	const handleTagClick = async (
-		e: React.MouseEvent<HTMLElement>,
-		tag: Tag
-	) => {
-		e.preventDefault();
-		const filteredProjects = await getProjects({ tags: [+tag.id] });
-		setProjects(filteredProjects);
-	};
+export function ProjectProfileCard({ proj }: { proj: ProjectInProfile }) {
 	return (
 		<StyledProjectCard key={proj.id} raised={false}>
 			<Box style={{ display: "flex" }}>
@@ -58,7 +40,12 @@ export function ProjectCard({
 				<div>
 					<CardContent>
 						<Stack direction="column" spacing={1}>
-							<Typography variant="h5" component="div">
+							<Typography
+								variant="h5"
+								component={NextLinkComposed}
+								to={{ pathname: `/projects/${proj.id}` }}
+								style={{ textDecoration: "none" }}
+							>
 								{proj.title}
 							</Typography>
 							<div>
@@ -102,46 +89,25 @@ export function ProjectCard({
 										label={tag.name}
 										key={tag.id}
 										color="secondary"
-										onClick={(e) => handleTagClick(e, tag)}
 									/>
 								))}
 							</Stack>
 							<Typography
 								variant="body2"
-								paragraph
-								style={{
-									display: "-webkit-box",
-									WebkitLineClamp: 2,
-									WebkitBoxOrient: "vertical",
-									overflow: "hidden",
-								}}
+								style={{ display: "flex", gap: 4 }}
 							>
-								{proj.description}
+								You have bought {proj.total_credits_bought}{" "}
+								credits of this project.
 							</Typography>
 						</Stack>
 					</CardContent>
 					<CardActions>
-						<Button
-							size="medium"
-							variant="text"
-							color="primary"
-							component={NextLinkComposed}
-							to={{ pathname: `/projects/${proj.id}` }}
-						>
-							Learn more
-						</Button>
 						{proj.credits_sold < proj.total_credits && (
 							<Button
 								size="medium"
 								variant="contained"
 								color="primary"
-								component={NextLinkComposed}
-								to={{
-									pathname: `/checkout`,
-									query: {
-										id: proj.id,
-									},
-								}}
+								onClick={() => {}}
 							>
 								Back project
 							</Button>

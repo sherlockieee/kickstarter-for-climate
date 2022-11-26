@@ -17,7 +17,6 @@ export const OwnerSubpage = ({ hidden }: Props) => {
 			}
 		}
 		if (!hidden) {
-			console.log("not hidden");
 			setProjectsUserOwns();
 		}
 	}, [hidden]);

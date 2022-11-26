@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { CircularProgress, Typography } from "@material-ui/core";
 
 import { Layout } from "../../components/Layout";

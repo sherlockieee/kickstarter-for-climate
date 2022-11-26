@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Typography } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 import { getProjectsUserBack } from "../../services/projects";
 import { ProjectButton } from "../../components/CommonButtons";
+import { ProjectProfileCard } from "../../components/ProjectProfileCard";
 
 type Props = {
 	hidden: boolean;
@@ -14,7 +15,6 @@ export const BackerSubpage = ({ hidden }: Props) => {
 			const res = await getProjectsUserBack();
 			if (!res.err) {
 				setProjects(res.data);
-				console.log(res.data);
 			}
 		}
 		if (!hidden) {
@@ -31,9 +31,16 @@ export const BackerSubpage = ({ hidden }: Props) => {
 					<ProjectButton variant="outlined" />
 				</div>
 			) : (
-				<Typography variant="body1" sx={{ paddingBlock: "1rem" }}>
-					You have {projects.length} projects
-				</Typography>
+				<>
+					<Typography variant="body1" sx={{ paddingBlock: "1rem" }}>
+						You have {projects.length} projects
+					</Typography>
+					<Stack direction="column" spacing={2}>
+						{projects.map((proj) => (
+							<ProjectProfileCard proj={proj} />
+						))}
+					</Stack>
+				</>
 			)}
 		</div>
 	);
