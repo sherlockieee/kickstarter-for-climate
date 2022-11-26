@@ -5,6 +5,8 @@ import { useAuth } from "../../contexts/auth";
 import { getOneProject } from "../../services/projects";
 import { ProjectContent } from "../../components/ProjectContent";
 import { Project } from "../../types/projects";
+import { ButtonAsLink, ProjectButton } from "../../components/CommonButtons";
+import { NextLinkComposed } from "../../components/Link";
 
 const CheckoutPage = ({ project }: { project: Project }) => {
 	const { user } = useAuth();
@@ -19,14 +21,29 @@ const CheckoutPage = ({ project }: { project: Project }) => {
 
 	return (
 		<Layout>
-			<Typography variant="h1" align="center" gutterBottom>
-				Project backed successfully!
-			</Typography>
-			<Typography variant="body1" align="center" gutterBottom>
-				You will receive an email confirmation soon! Thank you for
-				supporting.
-			</Typography>
-			<ProjectContent proj={project} />
+			<div
+				style={{
+					display: "flex",
+					flexDirection: "column",
+					alignItems: "center",
+				}}
+			>
+				<Typography variant="h1" align="center" gutterBottom>
+					Project backed successfully!
+				</Typography>
+				<Typography variant="body1" align="center" gutterBottom>
+					You will receive an email confirmation soon! Thank you for
+					supporting.
+				</Typography>
+				<div style={{ display: "flex", flexDirection: "row", gap: 8 }}>
+					<ProjectButton text="Browse more projects" />
+					<ButtonAsLink
+						to={{ pathname: "/profile" }}
+						variant="outlined"
+						text="View profile"
+					></ButtonAsLink>
+				</div>
+			</div>
 		</Layout>
 	);
 };

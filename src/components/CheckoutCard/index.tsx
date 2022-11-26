@@ -13,25 +13,15 @@ import ErrorIcon from "@mui/icons-material/Error";
 import { Stack } from "@mui/system";
 import { DateTime } from "luxon";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
-import { styled } from "@mui/material/styles";
-import Card, { CardProps } from "@mui/material/Card";
 
 import { Project } from "../../types/projects";
 import { formatCurrency } from "../../utils/currencyUtils";
 import { NextLinkComposed } from "../Link";
 import { ProgressBar } from "../ProgressBar";
-import { core } from "../../constants/theme";
 import { calculateDaysBetween } from "../../utils/dateUtils";
 import { createTransaction } from "../../services/transactions";
 import { useRouter } from "next/router";
-
-const StyledProjectCard = styled(Card)<CardProps>(() => ({
-	boxShadow: "none",
-	"& .MuiTypography-root, .MuiButton-label": {
-		color: core.darkGreen,
-	},
-	padding: "1rem",
-}));
+import { StyledProjectCard } from "../../styles/styledProjectCard";
 
 export function CheckoutCard({ proj }: { proj: Project }) {
 	const [numberOfCredits, setNumberOfCredits] = useState(

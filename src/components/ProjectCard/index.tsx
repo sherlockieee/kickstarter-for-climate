@@ -10,26 +10,14 @@ import {
 import { Stack } from "@mui/system";
 import { DateTime } from "luxon";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
-import { styled } from "@mui/material/styles";
-import Card, { CardProps } from "@mui/material/Card";
 
 import { Project, ProjectsList, Tag } from "../../types/projects";
 import { formatCurrency } from "../../utils/currencyUtils";
 import { NextLinkComposed } from "../Link";
 import { ProgressBar } from "../ProgressBar";
-import { core } from "../../constants/theme";
-
+import { StyledProjectCard } from "../../styles/styledProjectCard";
 import { calculateDaysBetween } from "../../utils/dateUtils";
 import { getProjects } from "../../services/projects";
-import { useRouter } from "next/router";
-
-const StyledProjectCard = styled(Card)<CardProps>(() => ({
-	boxShadow: "none",
-	"& .MuiTypography-root, .MuiButton-label": {
-		color: core.darkGreen,
-	},
-	padding: "1rem",
-}));
 
 export function ProjectCard({
 	proj,
@@ -38,7 +26,6 @@ export function ProjectCard({
 	proj: Project;
 	setProjects: React.Dispatch<React.SetStateAction<ProjectsList>>;
 }) {
-	const router = useRouter();
 	const handleTagClick = async (
 		e: React.MouseEvent<HTMLElement>,
 		tag: Tag

@@ -10,23 +10,13 @@ import {
 import { Stack } from "@mui/system";
 import { DateTime } from "luxon";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
-import { styled } from "@mui/material/styles";
-import Card, { CardProps } from "@mui/material/Card";
 
 import { formatCurrency } from "../../utils/currencyUtils";
 import { NextLinkComposed } from "../Link";
 import { ProgressBar } from "../ProgressBar";
-import { core } from "../../constants/theme";
 import { calculateDaysBetween } from "../../utils/dateUtils";
 import { ProjectInProfile } from "../../types/projects";
-
-const StyledProjectCard = styled(Card)<CardProps>(() => ({
-	boxShadow: "none",
-	"& .MuiTypography-root, .MuiButton-label": {
-		color: core.darkGreen,
-	},
-	padding: "1rem",
-}));
+import { StyledProjectCard } from "../../styles/styledProjectCard";
 
 export function ProjectProfileCard({ proj }: { proj: ProjectInProfile }) {
 	return (
@@ -92,12 +82,16 @@ export function ProjectProfileCard({ proj }: { proj: ProjectInProfile }) {
 									/>
 								))}
 							</Stack>
-							<Typography
-								variant="body2"
-								style={{ display: "flex", gap: 4 }}
-							>
-								You have bought {proj.total_credits_bought}{" "}
-								credits of this project.
+							<Typography variant="body2">
+								You have bought{" "}
+								<Typography variant="h6" component="span">
+									{proj.total_credits_bought}
+								</Typography>{" "}
+								credits out of{" "}
+								<Typography variant="h6" component="span">
+									{proj.credits_sold}
+								</Typography>{" "}
+								total credits sold.
 							</Typography>
 						</Stack>
 					</CardContent>
@@ -107,9 +101,15 @@ export function ProjectProfileCard({ proj }: { proj: ProjectInProfile }) {
 								size="medium"
 								variant="contained"
 								color="primary"
-								onClick={() => {}}
+								component={NextLinkComposed}
+								to={{
+									pathname: `/checkout`,
+									query: {
+										id: proj.id,
+									},
+								}}
 							>
-								Back project
+								Buy more credits
 							</Button>
 						)}
 					</CardActions>

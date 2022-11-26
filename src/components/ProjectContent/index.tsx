@@ -10,24 +10,14 @@ import {
 } from "@material-ui/core";
 import { Stack } from "@mui/system";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import { DateTime } from "luxon";
 
 import { Project } from "../../types/projects";
 import { formatCurrency } from "../../utils/currencyUtils";
 import { ProgressBar } from "../ProgressBar";
-import { core } from "../../constants/theme";
-import { styled } from "@mui/material/styles";
-import Card, { CardProps } from "@mui/material/Card";
 import { calculateDaysBetween } from "../../utils/dateUtils";
-import { DateTime } from "luxon";
 import { NextLinkComposed } from "../Link";
-
-const StyledProjectCard = styled(Card)<CardProps>(() => ({
-	boxShadow: "none",
-	"& .MuiTypography-root, .MuiButton-label": {
-		color: core.darkGreen,
-	},
-	padding: "2rem",
-}));
+import { StyledProjectCard } from "../../styles/styledProjectCard";
 
 export function ProjectContent({ proj }: { proj: Project }) {
 	return (
