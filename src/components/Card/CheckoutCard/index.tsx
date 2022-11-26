@@ -5,23 +5,18 @@ import {
 	CardActions,
 	CardContent,
 	CardMedia,
-	Chip,
 	TextField,
 	Typography,
 } from "@material-ui/core";
 import ErrorIcon from "@mui/icons-material/Error";
 import { Stack } from "@mui/system";
-import { DateTime } from "luxon";
-import AccessTimeIcon from "@mui/icons-material/AccessTime";
 
-import { Project } from "../../types/projects";
-import { formatCurrency } from "../../utils/currencyUtils";
-import { NextLinkComposed } from "../Link";
-import { ProgressBar } from "../ProgressBar";
-import { calculateDaysBetween } from "../../utils/dateUtils";
-import { createTransaction } from "../../services/transactions";
+import { Project } from "../../../types/projects";
+import { formatCurrency } from "../../../utils/currencyUtils";
+import { createTransaction } from "../../../services/transactions";
 import { useRouter } from "next/router";
-import { StyledProjectCard } from "../../styles/styledProjectCard";
+import { StyledProjectCard } from "../../../styles/styledProjectCard";
+import { ProjectHeader } from "../components/common";
 
 export function CheckoutCard({ proj }: { proj: Project }) {
 	const [numberOfCredits, setNumberOfCredits] = useState(
@@ -59,58 +54,7 @@ export function CheckoutCard({ proj }: { proj: Project }) {
 				<div>
 					<CardContent>
 						<Stack direction="column" spacing={1}>
-							<Typography
-								variant="h5"
-								component={NextLinkComposed}
-								to={{ pathname: `/projects/${proj.id}` }}
-								style={{ textDecoration: "none" }}
-							>
-								{proj.title}
-							</Typography>
-							<div>
-								<Typography variant="h6" component="span">
-									{formatCurrency({
-										value: proj.total_raised,
-										currency: proj.currency,
-									})}
-								</Typography>
-								<Typography component="span">
-									{" "}
-									raised by{" "}
-								</Typography>
-								<Typography variant="h6" component="span">
-									{proj.total_backers}
-								</Typography>{" "}
-								<Typography component="span">
-									backers
-								</Typography>
-							</div>
-							<ProgressBar
-								value={
-									(proj.total_raised / proj.funding_needed) *
-									100
-								}
-							/>
-							<Typography
-								variant="body2"
-								style={{ display: "flex", gap: 4 }}
-							>
-								<AccessTimeIcon />
-								{calculateDaysBetween(
-									DateTime.now(),
-									DateTime.fromISO(proj.end_date)
-								)}{" "}
-								days left
-							</Typography>
-							<Stack direction="row" spacing={1}>
-								{proj.tags.map((tag) => (
-									<Chip
-										label={tag.name}
-										key={tag.id}
-										color="secondary"
-									/>
-								))}
-							</Stack>
+							<ProjectHeader proj={proj} />
 							<form onSubmit={handleSubmitForm}>
 								<Typography variant="body1" gutterBottom>
 									Cost per credit:{" "}

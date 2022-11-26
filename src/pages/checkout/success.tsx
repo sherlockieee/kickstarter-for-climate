@@ -3,10 +3,8 @@ import { CircularProgress, Typography } from "@material-ui/core";
 import { Layout } from "../../components/Layout";
 import { useAuth } from "../../contexts/auth";
 import { getOneProject } from "../../services/projects";
-import { ProjectContent } from "../../components/ProjectContent";
 import { Project } from "../../types/projects";
-import { ButtonAsLink, ProjectButton } from "../../components/CommonButtons";
-import { NextLinkComposed } from "../../components/Link";
+import { ButtonAsLink, ProjectButton } from "../../components/Buttons";
 
 const CheckoutPage = ({ project }: { project: Project }) => {
 	const { user } = useAuth();

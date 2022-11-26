@@ -2,7 +2,7 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import { ParsedUrlQuery } from "querystring";
 
 import { Layout } from "../../components/Layout";
-import { ProjectContent } from "../../components/ProjectContent";
+import { ProjectContent } from "../../components/Card/ProjectContent";
 import { getOneProject, getProjects } from "../../services/projects";
 import { ProjectStatus } from "../../types/enumProjectStatus";
 import { Project } from "../../types/projects";

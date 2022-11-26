@@ -1,4 +1,4 @@
-import { ApplyButton, ProjectButton } from "../../components/CommonButtons";
+import { ApplyButton, ProjectButton } from "../../components/Buttons";
 import { TextLayout } from "./textLayout";
 
 export const TextOne = () => {

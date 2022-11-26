@@ -1,7 +1,7 @@
 import { Box, Grid, makeStyles, Typography } from "@material-ui/core";
 
 import { Theme } from "@material-ui/core";
-import { ApplyButton, ProjectButton } from "../../components/CommonButtons";
+import { ApplyButton, ProjectButton } from "../../components/Buttons";
 
 const useImageStyle = makeStyles<Theme>((theme) => ({
 	introImage: {

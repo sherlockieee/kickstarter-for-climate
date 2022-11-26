@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Stack, Typography } from "@mui/material";
 import { getProjectsUserBack } from "../../services/projects";
-import { ProjectButton } from "../../components/CommonButtons";
-import { ProjectProfileCard } from "../../components/ProjectProfileCard";
-
+import { ProjectButton } from "../../components/Buttons";
+import { ProjectProfileCard } from "../../components/Card/ProjectProfileCard";
 type Props = {
 	hidden: boolean;
 };

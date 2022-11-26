@@ -7,7 +7,7 @@ import theme from "../../constants/theme";
 import { useAuth } from "../../contexts/auth";
 import { NextLinkComposed } from "../Link";
 import MenuDropDown from "./MenuDropdown.tsx";
-import { ApplyButton, ProjectButton } from "../CommonButtons";
+import { ApplyButton, ProjectButton } from "../Buttons";
 
 export const NavBar = () => {
 	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);

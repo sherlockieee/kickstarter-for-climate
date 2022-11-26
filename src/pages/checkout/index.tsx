@@ -5,7 +5,7 @@ import { Layout } from "../../components/Layout";
 import { useAuth } from "../../contexts/auth";
 import { getOneProject } from "../../services/projects";
 
-import { CheckoutCard } from "../../components/CheckoutCard";
+import { CheckoutCard } from "../../components/Card/CheckoutCard";
 import { Project } from "../../types/projects";
 
 const CheckoutPage = ({ project }: { project: Project }) => {

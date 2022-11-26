@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Typography } from "@mui/material";
 import { getProjectsUserOwn } from "../../services/projects";
-import { ApplyButton } from "../../components/CommonButtons";
+import { ApplyButton } from "../../components/Buttons";
 
 type Props = {
 	hidden: boolean;

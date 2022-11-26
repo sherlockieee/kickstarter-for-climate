@@ -1,7 +1,7 @@
 import { getProjects } from "../../services/projects";
 import { ProjectsList } from "../../types/projects";
 import { Typography } from "@material-ui/core";
-import { ProjectCard } from "../../components/ProjectCard";
+import { ProjectCard } from "../../components/Card/ProjectCard";
 import { Stack } from "@mui/system";
 import { Layout } from "../../components/Layout";
 import { useState } from "react";

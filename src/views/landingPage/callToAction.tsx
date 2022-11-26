@@ -1,5 +1,5 @@
 import { Box, Container, Typography } from "@material-ui/core";
-import { ApplyButton, ProjectButton } from "../../components/CommonButtons";
+import { ApplyButton, ProjectButton } from "../../components/Buttons";
 
 export const CallToAction = () => {
 	return (
