@@ -25,7 +25,7 @@ export const BackerSubpage = ({ hidden }: Props) => {
 			{projects.length === 0 ? (
 				<div>
 					<Typography variant="body1" sx={{ paddingBlock: "1rem" }}>
-						You don't own any projects.
+						You haven't funded any projects.
 					</Typography>
 					<ProjectButton variant="outlined" />
 				</div>

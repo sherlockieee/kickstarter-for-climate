@@ -8,13 +8,15 @@ type Props = {
 	skip?: number;
 	limit?: number;
 	filtered_status?: string[];
+	order_by?: string[];
 };
 export async function getProjects(props: Props) {
 	const {
 		tags = [],
 		skip = 0,
-		limit = 20,
+		limit = 100,
 		filtered_status = ["IN_FUNDING"],
+		order_by = [],
 	} = props;
 	const data: ProjectsList = await axios
 		.get<Props, { data: ProjectsList }>(
@@ -25,6 +27,7 @@ export async function getProjects(props: Props) {
 					skip,
 					limit,
 					filtered_status,
+					order_by,
 				},
 
 				paramsSerializer: (params) => {
@@ -52,12 +55,26 @@ export async function getOneProject(id: string) {
 	return data;
 }
 
-export async function getProjectsUserOwn() {
+export async function getProjectsUserOwn(props: Props) {
+	const { tags = [], skip = 0, limit = 20, order_by = [] } = props;
+
+	console.log(props);
+
 	const token = Cookies.get("token");
 	const headers = { Authorization: `Bearer ${token}` };
 	const res = await axios
 		.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/projects/me/owner`, {
 			headers,
+			params: {
+				tags,
+				skip,
+				limit,
+				order_by,
+			},
+
+			paramsSerializer: (params) => {
+				return qs.stringify(params, { arrayFormat: "repeat" });
+			},
 		})
 		.then((res) => {
 			return { data: res.data, err: null };

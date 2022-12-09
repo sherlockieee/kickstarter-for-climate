@@ -42,11 +42,7 @@ export const BackingInfoRow = ({ proj }: ProjectProps) => (
 export const DaysLeftRow = ({ proj }: ProjectProps) => (
 	<Typography variant="body2" style={{ display: "flex", gap: 4 }}>
 		<AccessTimeIcon />
-		{calculateDaysBetween(
-			DateTime.now(),
-			DateTime.fromISO(proj.end_date)
-		)}{" "}
-		days left
+		{proj.days_remaining} days left
 	</Typography>
 );
 
@@ -62,7 +58,7 @@ export const ProjectHeader = ({ proj }: ProjectProps) => (
 	<>
 		<ProjectTitle proj={proj} />
 		<BackingInfoRow proj={proj} />
-		<ProgressBar value={(proj.total_raised / proj.funding_needed) * 100} />
+		<ProgressBar value={proj.percentage_raised} />
 		<DaysLeftRow proj={proj} />
 		<TagsRow proj={proj} />
 	</>

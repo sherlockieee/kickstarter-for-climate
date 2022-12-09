@@ -44,7 +44,7 @@ export function ProjectProfileCard({ proj }: { proj: ProjectInProfile }) {
 							to={{ pathname: `/transactions/${proj.id}` }}
 							text="View all receipts"
 						/>
-						{proj.credits_sold < proj.total_credits && (
+						{proj.remaining_credits > 0 && (
 							<ButtonAsLink
 								variant="text"
 								to={{

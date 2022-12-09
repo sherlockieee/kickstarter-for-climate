@@ -62,7 +62,7 @@ export function ProjectCard({
 							to={{ pathname: `/projects/${proj.id}` }}
 							text="Learn more"
 						/>
-						{proj.credits_sold < proj.total_credits && (
+						{proj.remaining_credits > 0 && (
 							<ButtonAsLink
 								variant="contained"
 								to={{

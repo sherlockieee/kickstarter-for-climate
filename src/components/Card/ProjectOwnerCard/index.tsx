@@ -1,22 +1,14 @@
-import {
-	Box,
-	CardActions,
-	CardContent,
-	CardMedia,
-	Divider,
-	Typography,
-} from "@material-ui/core";
-import { Stack } from "@mui/system";
+import { Box, CardActions, CardContent, CardMedia } from "@material-ui/core";
 
 import { Project } from "../../../types/projects";
 import { StyledProjectCard } from "../../../styles/styledProjectCard";
-import { ProjectHeader } from "../components/common";
 import { ButtonAsLink } from "../../Buttons";
+import { ProjectHeader } from "../../Card/components/common";
 
-export function ProjectContent({ proj }: { proj: Project }) {
+export function ProjectOwnerCard({ proj }: { proj: Project }) {
 	return (
 		<StyledProjectCard key={proj.id} raised={false}>
-			<Box style={{ display: "flex", gap: "1rem", marginBottom: "1rem" }}>
+			<Box style={{ display: "flex" }}>
 				<CardMedia
 					component="img"
 					image="https://arbordayblog.org/wp-content/uploads/2016/06/tree.jpg"
@@ -24,33 +16,30 @@ export function ProjectContent({ proj }: { proj: Project }) {
 				/>
 				<div>
 					<CardContent>
-						<Stack direction="column" spacing={1}>
-							<ProjectHeader proj={proj} />
-						</Stack>
+						<ProjectHeader proj={proj} />
 					</CardContent>
 					<CardActions>
+						<ButtonAsLink
+							variant="contained"
+							to={{ pathname: `/transactions/${proj.id}` }}
+							text="View all receipts"
+						/>
 						{proj.remaining_credits > 0 && (
 							<ButtonAsLink
-								variant="contained"
+								variant="text"
 								to={{
 									pathname: `/checkout`,
 									query: {
 										id: proj.id,
 									},
 								}}
-								text="Back Project"
+								text="Buy more credits"
 							/>
-						)}
+						)}{" "}
+						'
 					</CardActions>
 				</div>
 			</Box>
-			<Divider />
-			<div style={{ marginTop: "1rem" }}>
-				<Typography variant="h3" gutterBottom>
-					About
-				</Typography>
-				<Typography variant="body1">{proj.description}</Typography>
-			</div>
 		</StyledProjectCard>
 	);
 }

@@ -20,7 +20,7 @@ import { ProjectHeader } from "../components/common";
 
 export function CheckoutCard({ proj }: { proj: Project }) {
 	const [numberOfCredits, setNumberOfCredits] = useState(
-		Math.min(10, proj.total_credits - proj.credits_sold)
+		Math.min(10, proj.remaining_credits)
 	);
 	const [error, setError] = useState("");
 
@@ -91,8 +91,7 @@ export function CheckoutCard({ proj }: { proj: Project }) {
 											const number = Math.max(
 												Math.min(
 													+e.target.value,
-													proj.total_credits -
-														proj.credits_sold
+													proj.remaining_credits
 												),
 												1
 											);
@@ -123,7 +122,7 @@ export function CheckoutCard({ proj }: { proj: Project }) {
 						</Stack>
 					</CardContent>
 					<CardActions>
-						{proj.credits_sold < proj.total_credits && (
+						{proj.remaining_credits > 0 && (
 							<Button
 								size="medium"
 								variant="contained"

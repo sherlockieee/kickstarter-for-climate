@@ -18,6 +18,10 @@ export interface Project {
 	credits_sold: number;
 	total_credits: number;
 	cost_per_credit: number;
+	remaining_credits: number;
+	remaining_funding: number;
+	percentage_raised: number;
+	days_remaining: number;
 }
 
 export interface ProjectInProfile extends Project {
