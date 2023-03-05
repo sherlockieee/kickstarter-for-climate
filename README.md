@@ -1,4 +1,4 @@
-# X | Kickstarter for Climate
+# CreX | Crowfund climate projects
 
 ![](https://github.com/ekpangmichael/github-ci/workflows/CI/badge.svg)
 

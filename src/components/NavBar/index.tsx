@@ -37,7 +37,7 @@ export const NavBar = () => {
 								textDecoration: "none",
 							}}
 						>
-							X | Kickstarter for Climate
+							CreX | Crowdfund climate projects
 						</Typography>
 						<Box style={{ display: "flex", gap: `1rem` }}>
 							<ApplyButton variant="outlined" />

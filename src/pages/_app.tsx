@@ -35,7 +35,7 @@ export default function MyApp(props: CustomAppProps) {
 					name="viewport"
 					content="initial-scale=1, width=device-width"
 				/>
-				<title>X | Kickstarter for climate</title>
+				<title>Crex | Crowdfund Climate Project</title>
 				<meta
 					name="description"
 					content="Crowdfunding platform for climate  projects."

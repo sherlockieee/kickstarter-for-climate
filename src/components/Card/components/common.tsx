@@ -33,7 +33,7 @@ export const BackingInfoRow = ({ proj }: ProjectProps) => (
 		</Typography>
 		<Typography component="span"> raised by </Typography>
 		<Typography variant="h6" component="span">
-			{proj.total_backers}
+			{proj.total_users}
 		</Typography>{" "}
 		<Typography component="span">backers</Typography>
 	</div>

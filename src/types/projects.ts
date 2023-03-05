@@ -10,7 +10,7 @@ export interface Project {
 	funding_needed: number;
 	currency: "USD" | "EUR";
 	total_raised: number;
-	total_backers: number;
+	total_users: number;
 	description: string;
 	created: string;
 	end_date: string;

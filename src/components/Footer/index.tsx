@@ -22,7 +22,7 @@ export const Footer = () => {
 							color: theme.palette.secondary.main,
 						}}
 					>
-						© 2022 X | Kickstarter for Climate
+						© 2022 CreX
 					</Typography>
 					<Box
 						style={{

@@ -22,6 +22,7 @@ export function ProjectCard({
 	proj: Project;
 	setProjects: React.Dispatch<React.SetStateAction<ProjectsList>>;
 }) {
+	console.log(proj);
 	const handleTagClick = async (
 		e: React.MouseEvent<HTMLElement>,
 		tag: Tag
