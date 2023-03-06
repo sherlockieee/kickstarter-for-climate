@@ -2,11 +2,9 @@ import { CircularProgress, Typography } from "@material-ui/core";
 
 import { Layout } from "../../components/Layout";
 import { useAuth } from "../../contexts/auth";
-import { getOneProject } from "../../services/projects";
-import { Project } from "../../types/projects";
 import { ButtonAsLink, ProjectButton } from "../../components/Buttons";
 
-const CheckoutPage = ({ project }: { project: Project }) => {
+const SuccessPage = () => {
 	const { user } = useAuth();
 
 	if (!user) {
@@ -46,12 +44,7 @@ const CheckoutPage = ({ project }: { project: Project }) => {
 	);
 };
 
-CheckoutPage.requiresAuth = true;
-CheckoutPage.redirectUnauthenticatedTo = "/projects";
+SuccessPage.requiresAuth = true;
+SuccessPage.redirectUnauthenticatedTo = "/projects";
 
-export const getServerSideProps = async ({ query }: any) => {
-	const project = await getOneProject(query?.id.toString());
-	return { props: { project } };
-};
-
-export default CheckoutPage;
+export default SuccessPage;

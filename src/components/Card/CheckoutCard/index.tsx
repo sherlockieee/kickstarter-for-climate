@@ -13,7 +13,10 @@ import { Stack } from "@mui/system";
 
 import { Project } from "../../../types/projects";
 import { formatCurrency } from "../../../utils/currencyUtils";
-import { createTransaction } from "../../../services/transactions";
+import {
+	createPaymentSession,
+	createTransaction,
+} from "../../../services/transactions";
 import { useRouter } from "next/router";
 import { StyledProjectCard } from "../../../styles/styledProjectCard";
 import { ProjectHeader } from "../components/common";
@@ -29,19 +32,22 @@ export function CheckoutCard({ proj }: { proj: Project }) {
 		e: React.MouseEvent<HTMLElement> | React.FormEvent<HTMLFormElement>
 	) => {
 		e.preventDefault();
-		const res = await createTransaction({
+
+		const url = await createPaymentSession({
 			quantity: numberOfCredits,
-			amount: proj.cost_per_credit * numberOfCredits,
+			amount: proj.cost_per_credit,
 			currency: proj.currency,
-			project_id: proj.id,
+			project: proj,
 		});
 
-		if (res.err) {
-			setError(res.err);
-			return;
-		}
+		console.log({ url });
+		window.location.href = url;
 
-		router.push(`/checkout/success?id=${proj.id}`);
+		// const res = await createTransaction({
+
+		// });
+
+		// router.push(`/checkout/success?id=${proj.id}`);
 	};
 	return (
 		<StyledProjectCard key={proj.id} raised={false}>
