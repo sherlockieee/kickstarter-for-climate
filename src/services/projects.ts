@@ -58,8 +58,6 @@ export async function getOneProject(id: string) {
 export async function getProjectsUserOwn(props: Props) {
 	const { tags = [], skip = 0, limit = 20, order_by = [] } = props;
 
-	console.log(props);
-
 	const token = Cookies.get("token");
 	const headers = { Authorization: `Bearer ${token}` };
 	const res = await axios

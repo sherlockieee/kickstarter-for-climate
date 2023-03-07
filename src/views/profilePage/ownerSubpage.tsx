@@ -28,7 +28,7 @@ export const OwnerSubpage = ({ hidden }: Props) => {
 			{projects.length === 0 ? (
 				<div>
 					<Typography variant="body1" sx={{ paddingBlock: "1rem" }}>
-						You don't own any projects.
+						You don&apos;t own any projects.
 					</Typography>
 					<ApplyButton variant="outlined" />
 				</div>
@@ -39,8 +39,8 @@ export const OwnerSubpage = ({ hidden }: Props) => {
 					</Typography>
 
 					<Stack direction="column" spacing={2}>
-						{projects.map((proj) => (
-							<ProjectOwnerCard proj={proj} />
+						{projects.map((proj, idx) => (
+							<ProjectOwnerCard proj={proj} key={idx} />
 						))}
 					</Stack>
 				</>

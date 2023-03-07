@@ -1,5 +1,5 @@
 import { Box, Grid, makeStyles, Typography } from "@material-ui/core";
-
+import Image from "next/image";
 import { Theme } from "@material-ui/core";
 import { ApplyButton, ProjectButton } from "../../components/Buttons";
 
@@ -63,10 +63,14 @@ export const IntroSection = () => {
 				md={7}
 				style={{ width: "100%", position: "relative" }}
 			>
-				<img
+				<Image
 					className={classes.introImage}
-					alt=""
+					width="100%"
+					height="100%"
+					layout="responsive"
+					objectFit="contain"
 					src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+					alt=""
 				/>
 			</Grid>
 		</Grid>

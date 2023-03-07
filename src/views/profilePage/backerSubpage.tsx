@@ -25,7 +25,7 @@ export const BackerSubpage = ({ hidden }: Props) => {
 			{projects.length === 0 ? (
 				<div>
 					<Typography variant="body1" sx={{ paddingBlock: "1rem" }}>
-						You haven't funded any projects.
+						You haven&apos;t funded any projects.
 					</Typography>
 					<ProjectButton variant="outlined" />
 				</div>
@@ -35,8 +35,8 @@ export const BackerSubpage = ({ hidden }: Props) => {
 						You have funded {projects.length} projects.
 					</Typography>
 					<Stack direction="column" spacing={2}>
-						{projects.map((proj) => (
-							<ProjectProfileCard proj={proj} />
+						{projects.map((proj, idx) => (
+							<ProjectProfileCard proj={proj} key={idx} />
 						))}
 					</Stack>
 				</>

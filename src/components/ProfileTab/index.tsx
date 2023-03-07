@@ -68,8 +68,9 @@ function ProfileTab({ router }) {
 						},
 					}}
 				>
-					{SubpageInfo.map((subpage) => (
+					{SubpageInfo.map((subpage, idx) => (
 						<Tab
+							key={idx}
 							onClick={(event) => {
 								event.preventDefault();
 							}}
