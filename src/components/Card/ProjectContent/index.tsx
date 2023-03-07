@@ -49,7 +49,9 @@ export function ProjectContent({ proj }: { proj: Project }) {
 				<Typography variant="h3" gutterBottom>
 					About
 				</Typography>
-				<Typography variant="body1">{proj.description}</Typography>
+				<Typography variant="body1" style={{ whiteSpace: "pre-wrap" }}>
+					{proj.description}
+				</Typography>
 			</div>
 		</StyledProjectCard>
 	);

@@ -3,6 +3,7 @@ import { Project, ProjectInProfile } from "../../../types/projects";
 import { formatCurrency } from "../../../utils/currencyUtils";
 import { NextLinkComposed } from "../../Link";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import { Stack } from "@mui/system";
 import { ProgressBar } from "./ProgressBar";
 import theme from "../../../constants/theme";
@@ -22,17 +23,16 @@ export const ProjectTitle = ({ proj }: ProjectProps) => (
 );
 
 export const BackingInfoRow = ({ proj }: ProjectProps) => (
-	<div>
-		<Typography variant="h6" component="span">
+	<div style={{ display: "flex", alignContent: "baseline", gap: "4px" }}>
+		<AttachMoneyIcon />
+		<Typography component="span" style={{ fontWeight: "bold" }}>
 			{formatCurrency({
 				value: proj.total_raised,
 				currency: proj.currency,
 			})}
 		</Typography>
 		<Typography component="span"> raised by </Typography>
-		<Typography variant="h6" component="span">
-			{proj.total_users}
-		</Typography>{" "}
+		<Typography component="span">{proj.total_users}</Typography>{" "}
 		<Typography component="span">backers</Typography>
 	</div>
 );
@@ -61,6 +61,25 @@ export const DaysLeftRow = ({ proj }: ProjectProps) => (
 	</>
 );
 
+export const CreditPriceRow = ({ proj }: ProjectProps) => (
+	<>
+		{proj.days_remaining > 0 && (
+			<div>
+				<Typography variant="h6" component="span">
+					{proj.remaining_credits}
+				</Typography>
+				<Typography component="span"> credits left at </Typography>
+				<Typography variant="h6" component="span">
+					{formatCurrency({
+						value: proj.cost_per_credit,
+						currency: proj.currency,
+					})}
+				</Typography>{" "}
+				<Typography component="span">/credit</Typography>
+			</div>
+		)}
+	</>
+);
 export const TagsRow = ({ proj }: ProjectProps) => (
 	<Stack direction="row" spacing={1} style={{ marginTop: 8 }}>
 		{proj.tags.map((tag) => (
@@ -70,11 +89,21 @@ export const TagsRow = ({ proj }: ProjectProps) => (
 );
 
 export const ProjectHeader = ({ proj }: ProjectProps) => (
-	<>
+	<div
+		style={{
+			marginBottom: 16,
+			display: "flex",
+			flexDirection: "column",
+			gap: 4,
+		}}
+	>
 		<ProjectTitle proj={proj} />
-		<BackingInfoRow proj={proj} />
+		<CreditPriceRow proj={proj} />
+
 		<ProgressBar value={proj.percentage_raised} />
-		<DaysLeftRow proj={proj} />
+		<BackingInfoRow proj={proj} />
 		<TagsRow proj={proj} />
-	</>
+
+		<DaysLeftRow proj={proj} />
+	</div>
 );
