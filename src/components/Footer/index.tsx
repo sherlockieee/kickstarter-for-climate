@@ -1,12 +1,4 @@
-import {
-	AppBar,
-	Box,
-	Button,
-	Container,
-	Link,
-	Toolbar,
-	Typography,
-} from "@material-ui/core";
+import { Box, Container, Toolbar, Typography } from "@material-ui/core";
 import theme from "../../constants/theme";
 import { NextLinkComposed } from "../Link";
 

@@ -32,7 +32,7 @@ export const BackerSubpage = ({ hidden }: Props) => {
 			) : (
 				<>
 					<Typography variant="body1" sx={{ paddingBlock: "1rem" }}>
-						You have {projects.length} projects
+						You have funded {projects.length} projects.
 					</Typography>
 					<Stack direction="column" spacing={2}>
 						{projects.map((proj) => (

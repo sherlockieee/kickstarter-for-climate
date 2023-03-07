@@ -8,16 +8,11 @@ import {
 	TextField,
 	Typography,
 } from "@material-ui/core";
-import ErrorIcon from "@mui/icons-material/Error";
 import { Stack } from "@mui/system";
 
 import { Project } from "../../../types/projects";
 import { formatCurrency } from "../../../utils/currencyUtils";
-import {
-	createPaymentSession,
-	createTransaction,
-} from "../../../services/transactions";
-import { useRouter } from "next/router";
+import { createPaymentSession } from "../../../services/transactions";
 import { StyledProjectCard } from "../../../styles/styledProjectCard";
 import { ProjectHeader } from "../components/common";
 
@@ -25,9 +20,7 @@ export function CheckoutCard({ proj }: { proj: Project }) {
 	const [numberOfCredits, setNumberOfCredits] = useState(
 		Math.min(10, proj.remaining_credits)
 	);
-	const [error, setError] = useState("");
 
-	const router = useRouter();
 	const handleSubmitForm = async (
 		e: React.MouseEvent<HTMLElement> | React.FormEvent<HTMLFormElement>
 	) => {
@@ -139,20 +132,6 @@ export function CheckoutCard({ proj }: { proj: Project }) {
 							</Button>
 						)}
 					</CardActions>
-					{error && (
-						<Typography
-							variant="body1"
-							color="error"
-							style={{
-								display: "flex",
-								alignItems: "center",
-								gap: 8,
-							}}
-						>
-							<ErrorIcon />
-							{error}
-						</Typography>
-					)}
 				</div>
 			</Box>
 		</StyledProjectCard>

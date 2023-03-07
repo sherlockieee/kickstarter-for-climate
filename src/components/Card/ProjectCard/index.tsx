@@ -8,7 +8,6 @@ import {
 import { Stack } from "@mui/system";
 
 import { Project, ProjectsList, Tag } from "../../../types/projects";
-import { ProgressBar } from "../components/ProgressBar";
 import { StyledProjectCard } from "../../../styles/styledProjectCard";
 
 import { getProjects } from "../../../services/projects";

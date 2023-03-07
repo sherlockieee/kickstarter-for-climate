@@ -44,19 +44,19 @@ export function ProjectProfileCard({ proj }: { proj: ProjectInProfile }) {
 							to={{ pathname: `/transactions/${proj.id}` }}
 							text="View all receipts"
 						/>
-						{proj.remaining_credits > 0 && (
-							<ButtonAsLink
-								variant="text"
-								to={{
-									pathname: `/checkout`,
-									query: {
-										id: proj.id,
-									},
-								}}
-								text="Buy more credits"
-							/>
-						)}{" "}
-						'
+						{proj.remaining_credits > 0 &&
+							proj.days_remaining > 0 && (
+								<ButtonAsLink
+									variant="text"
+									to={{
+										pathname: `/checkout`,
+										query: {
+											id: proj.id,
+										},
+									}}
+									text="Buy more credits"
+								/>
+							)}
 					</CardActions>
 				</div>
 			</Box>

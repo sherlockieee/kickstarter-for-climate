@@ -1,13 +1,11 @@
 import { Chip, Typography } from "@material-ui/core";
-import { DateTime } from "luxon";
 import { Project, ProjectInProfile } from "../../../types/projects";
 import { formatCurrency } from "../../../utils/currencyUtils";
-import { calculateDaysBetween } from "../../../utils/dateUtils";
 import { NextLinkComposed } from "../../Link";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import { Stack } from "@mui/system";
 import { ProgressBar } from "./ProgressBar";
-
+import theme from "../../../constants/theme";
 type ProjectProps = {
 	proj: Project | ProjectInProfile;
 };
@@ -40,14 +38,31 @@ export const BackingInfoRow = ({ proj }: ProjectProps) => (
 );
 
 export const DaysLeftRow = ({ proj }: ProjectProps) => (
-	<Typography variant="body2" style={{ display: "flex", gap: 4 }}>
-		<AccessTimeIcon />
-		{proj.days_remaining} days left
-	</Typography>
+	<>
+		{proj.days_remaining > 0 ? (
+			<Typography variant="body2" style={{ display: "flex", gap: 4 }}>
+				<AccessTimeIcon />
+				{proj.days_remaining} days left
+			</Typography>
+		) : (
+			<Typography
+				variant="body2"
+				style={{
+					display: "flex",
+					gap: 4,
+					color: theme.palette.info.contrastText,
+					opacity: 0.8,
+				}}
+			>
+				<AccessTimeIcon />
+				No longer in funding
+			</Typography>
+		)}
+	</>
 );
 
 export const TagsRow = ({ proj }: ProjectProps) => (
-	<Stack direction="row" spacing={1}>
+	<Stack direction="row" spacing={1} style={{ marginTop: 8 }}>
 		{proj.tags.map((tag) => (
 			<Chip label={tag.name} key={tag.id} color="secondary" />
 		))}
