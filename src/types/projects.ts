@@ -22,6 +22,7 @@ export interface Project {
 	remaining_funding: number;
 	percentage_raised: number;
 	days_remaining: number;
+	image_url: string;
 }
 
 export interface ProjectInProfile extends Project {

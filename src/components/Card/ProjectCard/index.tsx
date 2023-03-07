@@ -35,7 +35,7 @@ export function ProjectCard({
 			<Box style={{ display: "flex" }}>
 				<CardMedia
 					component="img"
-					image="https://arbordayblog.org/wp-content/uploads/2016/06/tree.jpg"
+					image={proj.image_url}
 					style={{ width: 240 }}
 				/>
 				<div>
