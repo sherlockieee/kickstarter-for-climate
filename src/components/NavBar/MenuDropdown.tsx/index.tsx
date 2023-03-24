@@ -1,11 +1,13 @@
 import React from "react";
+import { useRouter } from "next/router";
 import Menu from "@mui/material/Menu";
-import { ListItemIcon, MenuItem } from "@material-ui/core";
-import { Logout } from "@mui/icons-material";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import Logout from "@mui/icons-material/Logout";
+import MenuItem from "@mui/material/MenuItem";
 import Avatar from "@mui/material/Avatar";
+
 import { useAuth } from "../../../contexts/auth";
 import theme from "../../../constants/theme";
-import { useRouter } from "next/router";
 
 type Props = {
 	anchorEl: HTMLElement | null;

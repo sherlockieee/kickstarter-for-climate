@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import Tabs from "@mui/material/Tabs";
 import Box from "@mui/material/Box";
+import Tab from "@mui/material/Tab";
+import Tabs from "@mui/material/Tabs";
 import Typography from "@mui/material/Typography";
 import { withRouter } from "next/router";
 
 import theme from "../../constants/theme";
-import { Tab } from "@material-ui/core";
 import Link from "next/link";
 import { OwnerSubpage } from "../../views/profilePage/ownerSubpage";
 import { BackerSubpage } from "../../views/profilePage/backerSubpage";

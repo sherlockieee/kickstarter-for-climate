@@ -1,12 +1,10 @@
-import {
-	Box,
-	CardActions,
-	CardContent,
-	CardMedia,
-	Divider,
-	Typography,
-} from "@material-ui/core";
-import { Stack } from "@mui/system";
+import Box from "@mui/material/Box";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Divider from "@mui/material/Divider";
+import Typography from "@mui/material/Typography";
+import Stack from "@mui/material/Stack";
 
 import { Project } from "../../../types/projects";
 import { StyledProjectCard } from "../../../styles/styledProjectCard";

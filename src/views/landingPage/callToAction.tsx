@@ -1,4 +1,6 @@
-import { Box, Container, Typography } from "@material-ui/core";
+import Box from "@mui/material/Box";
+import Container from "@mui/material/Container";
+import Typography from "@mui/material/Typography";
 import { ApplyButton, ProjectButton } from "../../components/Buttons";
 
 export const CallToAction = () => {

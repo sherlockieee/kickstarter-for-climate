@@ -1,14 +1,10 @@
-import { GetStaticPaths, GetStaticProps } from "next";
-import { ParsedUrlQuery } from "querystring";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import CircularProgress from "@mui/material/CircularProgress";
 
 import { Layout } from "../../components/Layout";
 import { ProjectContent } from "../../components/Card/ProjectContent";
 import { getOneProject, getProjects } from "../../services/projects";
-import { ProjectStatus } from "../../types/enumProjectStatus";
-import { Project } from "../../types/projects";
-import { useEffect, useState } from "react";
-import { CircularProgress } from "@material-ui/core";
 
 export default function Post() {
 	const router = useRouter();

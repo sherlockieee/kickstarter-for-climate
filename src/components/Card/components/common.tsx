@@ -1,10 +1,12 @@
-import { Chip, Typography } from "@material-ui/core";
+import Typography from "@mui/material/Typography";
+import Chip from "@mui/material/Chip";
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
+import Stack from "@mui/material/Stack";
+
 import { Project, ProjectInProfile } from "../../../types/projects";
 import { formatCurrency } from "../../../utils/currencyUtils";
 import { NextLinkComposed } from "../../Link";
-import AccessTimeIcon from "@mui/icons-material/AccessTime";
-import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
-import { Stack } from "@mui/system";
 import { ProgressBar } from "./ProgressBar";
 import theme from "../../../constants/theme";
 type ProjectProps = {

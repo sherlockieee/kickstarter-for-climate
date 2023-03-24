@@ -1,9 +1,17 @@
-import { Box, Grid, makeStyles, Typography } from "@material-ui/core";
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
+import makeStyles from "@mui/styles/makeStyles";
+import Typography from "@mui/material/Typography";
 import Image from "next/image";
-import { Theme } from "@material-ui/core";
 import { ApplyButton, ProjectButton } from "../../components/Buttons";
+import { Theme } from "@mui/material/styles";
 
-const useImageStyle = makeStyles<Theme>((theme) => ({
+declare module "@mui/styles/defaultTheme" {
+	// eslint-disable-next-line @typescript-eslint/no-empty-interface (remove this line if you don't have the rule enabled)
+	interface DefaultTheme extends Theme {}
+}
+
+const useImageStyle = makeStyles((theme) => ({
 	introImage: {
 		position: "relative",
 		objectFit: "fill",

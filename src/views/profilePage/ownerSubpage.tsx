@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { Stack, Typography } from "@mui/material";
+import { useEffect, useState } from "react";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
+
 import { getProjectsUserOwn } from "../../services/projects";
 import { ApplyButton } from "../../components/Buttons";
 import { ProjectOwnerCard } from "../../components/Card/ProjectOwnerCard";

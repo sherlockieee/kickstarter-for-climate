@@ -18,6 +18,7 @@ export async function getProjects(props: Props) {
 		filtered_status = ["IN_FUNDING"],
 		order_by = [],
 	} = props;
+	console.log(`${process.env.NEXT_PUBLIC_BACKEND_URL}/projects`);
 	const data: ProjectsList = await axios
 		.get<Props, { data: ProjectsList }>(
 			`${process.env.NEXT_PUBLIC_BACKEND_URL}/projects`,

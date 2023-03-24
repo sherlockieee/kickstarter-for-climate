@@ -1,4 +1,4 @@
-import { Button } from "@material-ui/core";
+import Button from "@mui/material/Button";
 import { NextLinkComposed } from "../Link";
 import { LinkProps as NextLinkProps } from "next/link";
 import React from "react";

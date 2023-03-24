@@ -1,4 +1,7 @@
-import { Box, CardActions, CardContent, CardMedia } from "@material-ui/core";
+import Box from "@mui/material/Box";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
 
 import { Project } from "../../../types/projects";
 import { StyledProjectCard } from "../../../styles/styledProjectCard";

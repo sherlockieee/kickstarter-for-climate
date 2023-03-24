@@ -1,14 +1,12 @@
 import React, { useState } from "react";
-import {
-	Box,
-	Button,
-	CardActions,
-	CardContent,
-	CardMedia,
-	TextField,
-	Typography,
-} from "@material-ui/core";
-import { Stack } from "@mui/system";
+import Button from "@mui/material/Button";
+import Box from "@mui/material/Box";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import TextField from "@mui/material/TextField";
+import Typography from "@mui/material/Typography";
+import Stack from "@mui/material/Stack";
 
 import { Project } from "../../../types/projects";
 import { formatCurrency } from "../../../utils/currencyUtils";

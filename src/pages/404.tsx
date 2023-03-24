@@ -1,5 +1,6 @@
-import { Container, Typography } from "@material-ui/core";
-import Link from "next/link";
+import Container from "@mui/material/Container";
+import Typography from "@mui/material/Typography";
+
 import { NextLinkComposed } from "../components/Link";
 
 export default function FourOhFour() {

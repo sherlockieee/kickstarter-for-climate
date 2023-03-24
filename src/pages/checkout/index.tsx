@@ -1,5 +1,5 @@
-import { CircularProgress, Typography } from "@material-ui/core";
-import { useRouter } from "next/router";
+import Typography from "@mui/material/Typography";
+import CircularProgress from "@mui/material/CircularProgress";
 
 import { Layout } from "../../components/Layout";
 import { useAuth } from "../../contexts/auth";
