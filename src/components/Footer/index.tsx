@@ -1,12 +1,7 @@
-import {
-	AppBar,
-	Box,
-	Button,
-	Container,
-	Link,
-	Toolbar,
-	Typography,
-} from "@material-ui/core";
+import Box from "@mui/material/Box";
+import Container from "@mui/material/Container";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
 import theme from "../../constants/theme";
 import { NextLinkComposed } from "../Link";
 
@@ -22,7 +17,7 @@ export const Footer = () => {
 							color: theme.palette.secondary.main,
 						}}
 					>
-						© 2022 X | Kickstarter for Climate
+						© 2022 CreX
 					</Typography>
 					<Box
 						style={{

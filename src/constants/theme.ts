@@ -1,5 +1,4 @@
-import { createTheme } from "@material-ui/core/styles";
-import type {} from "@material-ui/lab/themeAugmentation";
+import { createTheme } from "@mui/material/styles";
 
 export const core = {
 	darkGreen: "#0B3830",
@@ -27,6 +26,9 @@ const theme = createTheme({
 		error: {
 			main: "#C95234",
 			contrastText: core.white,
+		},
+		info: {
+			main: core.white,
 		},
 	},
 	typography: {
@@ -63,24 +65,38 @@ const theme = createTheme({
 			color: core.gold,
 		},
 	},
-});
-
-theme.overrides = {
-	MuiButton: {
-		root: {
-			padding: "0.75rem 1rem",
-			fontFamily: "'DM Sans', sans-serif",
-			textTransform: "none",
+	components: {
+		MuiButton: {
+			styleOverrides: {
+				root: {
+					padding: "0.75rem 1rem",
+					fontFamily: "'DM Sans', sans-serif",
+					textTransform: "none",
+				},
+			},
 		},
-	},
-	MuiLink: {
-		root: {
-			textDecoration: "none",
-			"&:hover": {
-				color: core.gold,
+		MuiLink: {
+			styleOverrides: {
+				root: {
+					textDecoration: "none",
+					"&:hover": {
+						color: core.gold,
+					},
+				},
 			},
 		},
 	},
-};
+});
+
+declare module "@mui/material/styles" {
+	interface Palette {
+		neutral: Palette["primary"];
+	}
+
+	// allow configuration using `createTheme`
+	interface PaletteOptions {
+		neutral?: PaletteOptions["primary"];
+	}
+}
 
 export default theme;

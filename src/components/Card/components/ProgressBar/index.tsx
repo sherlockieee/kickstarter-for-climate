@@ -1,9 +1,8 @@
-import {
-	Box,
-	LinearProgress,
+import Box from "@mui/material/Box";
+import LinearProgress, {
 	LinearProgressProps,
-	Typography,
-} from "@material-ui/core";
+} from "@mui/material/LinearProgress";
+import Typography from "@mui/material/Typography";
 
 export const ProgressBar = (props: LinearProgressProps & { value: number }) => {
 	return (

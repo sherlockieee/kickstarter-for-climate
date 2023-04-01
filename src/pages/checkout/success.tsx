@@ -1,12 +1,11 @@
-import { CircularProgress, Typography } from "@material-ui/core";
+import CircularProgress from "@mui/material/CircularProgress";
+import Typography from "@mui/material/Typography";
 
 import { Layout } from "../../components/Layout";
 import { useAuth } from "../../contexts/auth";
-import { getOneProject } from "../../services/projects";
-import { ProjectContent } from "../../components/ProjectContent";
-import { Project } from "../../types/projects";
+import { ButtonAsLink, ProjectButton } from "../../components/Buttons";
 
-const CheckoutPage = ({ project }: { project: Project }) => {
+const SuccessPage = () => {
 	const { user } = useAuth();
 
 	if (!user) {
@@ -19,20 +18,34 @@ const CheckoutPage = ({ project }: { project: Project }) => {
 
 	return (
 		<Layout>
-			<Typography variant="h1" align="center" gutterBottom>
-				Project backed successful!
-			</Typography>
-			<ProjectContent proj={project} />
+			<div
+				style={{
+					display: "flex",
+					flexDirection: "column",
+					alignItems: "center",
+				}}
+			>
+				<Typography variant="h1" align="center" gutterBottom>
+					Project backed successfully!
+				</Typography>
+				<Typography variant="body1" align="center" gutterBottom>
+					You will receive an email confirmation soon! Thank you for
+					supporting.
+				</Typography>
+				<div style={{ display: "flex", flexDirection: "row", gap: 8 }}>
+					<ProjectButton text="Browse more projects" />
+					<ButtonAsLink
+						to={{ pathname: "/profile" }}
+						variant="outlined"
+						text="View profile"
+					></ButtonAsLink>
+				</div>
+			</div>
 		</Layout>
 	);
 };
 
-CheckoutPage.requiresAuth = true;
-CheckoutPage.redirectUnauthenticatedTo = "/projects";
+SuccessPage.requiresAuth = true;
+SuccessPage.redirectUnauthenticatedTo = "/projects";
 
-export const getServerSideProps = async ({ query }: any) => {
-	const project = await getOneProject(query?.id.toString());
-	return { props: { project } };
-};
-
-export default CheckoutPage;
+export default SuccessPage;

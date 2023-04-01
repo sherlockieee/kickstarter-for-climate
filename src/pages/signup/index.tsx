@@ -1,7 +1,10 @@
-import { Button, Container, Input, Typography } from "@material-ui/core";
+import Button from "@mui/material/Button";
+import Container from "@mui/material/Container";
+import Input from "@mui/material/Input";
+import Typography from "@mui/material/Typography";
 import ErrorIcon from "@mui/icons-material/Error";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import React, { useState } from "react";
 
 import { Layout } from "../../components/Layout";
 import { NextLinkComposed } from "../../components/Link";

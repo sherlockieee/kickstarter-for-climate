@@ -10,7 +10,7 @@ export interface Project {
 	funding_needed: number;
 	currency: "USD" | "EUR";
 	total_raised: number;
-	total_backers: number;
+	total_users: number;
 	description: string;
 	created: string;
 	end_date: string;
@@ -18,6 +18,15 @@ export interface Project {
 	credits_sold: number;
 	total_credits: number;
 	cost_per_credit: number;
+	remaining_credits: number;
+	remaining_funding: number;
+	percentage_raised: number;
+	days_remaining: number;
+	image_url: string;
+}
+
+export interface ProjectInProfile extends Project {
+	total_credits_bought: number;
 }
 
 export type ProjectsList = Project[];

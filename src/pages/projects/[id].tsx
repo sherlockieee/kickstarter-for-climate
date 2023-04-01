@@ -1,38 +1,36 @@
-import { GetStaticPaths, GetStaticProps } from "next";
-import { ParsedUrlQuery } from "querystring";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import CircularProgress from "@mui/material/CircularProgress";
 
 import { Layout } from "../../components/Layout";
-import { ProjectContent } from "../../components/ProjectContent";
+import { ProjectContent } from "../../components/Card/ProjectContent";
 import { getOneProject, getProjects } from "../../services/projects";
-import { Project } from "../../types/projects";
 
-export default function Post({ project }: { project: Project }) {
+export default function Post() {
+	const router = useRouter();
+	const { id } = router.query;
+	const [project, setProject] = useState(null);
+
+	useEffect(() => {
+		async function getAndSetProject() {
+			const curProject = await getOneProject(id.toString());
+			setProject(curProject);
+		}
+
+		getAndSetProject();
+	}, [id]);
+
+	if (!project) {
+		return (
+			<Layout>
+				<CircularProgress />
+			</Layout>
+		);
+	}
+
 	return (
 		<Layout>
 			<ProjectContent proj={project} />
 		</Layout>
 	);
 }
-
-type Props = {
-	project: Project;
-};
-
-interface Params extends ParsedUrlQuery {
-	id: string;
-}
-
-export const getStaticPaths: GetStaticPaths = async () => {
-	let data = await getProjects({});
-
-	const paths = data.map((proj) => ({ params: { id: proj.id.toString() } }));
-
-	return { paths, fallback: false };
-};
-
-export const getStaticProps: GetStaticProps<Props, Params> = async ({
-	params,
-}) => {
-	const project = await getOneProject(params!.id.toString());
-	return { props: { project } };
-};

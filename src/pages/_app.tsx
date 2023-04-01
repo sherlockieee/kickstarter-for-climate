@@ -4,7 +4,7 @@ import { AppProps } from "next/app";
 import CssBaseline from "@mui/material/CssBaseline";
 import { CacheProvider, EmotionCache } from "@emotion/react";
 import createEmotionCache from "../utils/createEmotionCache";
-import { ThemeProvider } from "@material-ui/core";
+import { ThemeProvider } from "@mui/material/styles";
 
 import theme from "../constants/theme";
 import "../styles/global.css";
@@ -35,7 +35,7 @@ export default function MyApp(props: CustomAppProps) {
 					name="viewport"
 					content="initial-scale=1, width=device-width"
 				/>
-				<title>X | Kickstarter for climate</title>
+				<title>Crex | Crowdfund Climate Project</title>
 				<meta
 					name="description"
 					content="Crowdfunding platform for climate  projects."
@@ -55,10 +55,10 @@ export default function MyApp(props: CustomAppProps) {
 				)}
 			</Head>
 			<ThemeProvider theme={theme}>
-				<CssBaseline />
 				<AuthProvider>
 					<Component {...pageProps} />
 				</AuthProvider>
+				<CssBaseline />
 			</ThemeProvider>
 		</CacheProvider>
 	);

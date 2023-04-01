@@ -38,7 +38,6 @@ export const AuthProvider = ({ children }: any) => {
 
 	async function authenticate(token: string) {
 		setLoading(true);
-		console.log("AUTHENTICATING");
 		const { data: user } = await getCurrentUser(token);
 		if (!user) {
 			setUser(null);

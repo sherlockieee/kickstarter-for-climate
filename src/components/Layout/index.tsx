@@ -1,4 +1,4 @@
-import { Container } from "@material-ui/core";
+import Container from "@mui/material/Container";
 import React from "react";
 import { Footer } from "../Footer";
 import { NavBar } from "../NavBar";
